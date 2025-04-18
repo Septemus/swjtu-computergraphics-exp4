@@ -54,6 +54,7 @@ BOOL CMFCApplication1Doc::OnNewDocument()
 		return FALSE;
 
 	// TODO: 在此添加重新初始化代码
+	SetTitle(_T("图形学实验2"));
 	// (SDI 文档将重用该文档)
 
 	return TRUE;

@@ -64,9 +64,3 @@ public:
 	afx_msg BOOL OnEraseBkgnd(CDC* pDC);
 	afx_msg void OnSize(UINT nType, int cx, int cy);
 };
-
-#ifndef _DEBUG  // MFCApplication1View.cpp 中的调试版本
-inline CMFCApplication1Doc* CMFCApplication1View::GetDocument() const
-   { return reinterpret_cast<CMFCApplication1Doc*>(m_pDocument); }
-#endif
-

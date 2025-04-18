@@ -60,9 +60,3 @@ private:
 public:
 	afx_msg int OnCreate(LPCREATESTRUCT lpCreateStruct);
 };
-
-#ifndef _DEBUG  // LeftView.cpp 中的调试版本
-inline CMFCApplication1Doc* CLeftView::GetDocument()
-   { return reinterpret_cast<CMFCApplication1Doc*>(m_pDocument); }
-#endif
-
