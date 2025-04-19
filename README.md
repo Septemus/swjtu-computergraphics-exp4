@@ -63,6 +63,9 @@
     - 实现任意斜率直线段生成算法（DDA 算法、中点算法、Bresenham 算法），每种算法完成任意斜率直线段的绘制。选择 12~24 边的一种正多边形两两顶点相连形成线段进行每种算法测试。（必做）
     - 实现中点画圆算法（必做），以同心圆簇（若干同心圆）与不同位置的圆进行测试；
     - Bresenham 画圆算法、圆弧绘制算法，以同心圆簇（若干同心圆）、0-90 度、0-180 度、0-270 度、0-360 度等范围内多个圆弧进行验证（选做）。
+1. 任务（2）（第 7 周）
+    - 实现扫描线多边形填充算法（有效边表多边形填充算法）并至少以多个凸、凹多边形进行验证（包括有水平边的多边形）；（必做）
+    - 实现种子填充算法（四联通的边界表示、内点表示），并使用自己的画圆算法绘制边界边界表示的点阵区域,再作为内点表示的区域进行填充验证。（选做）
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -83,7 +86,11 @@
 <!-- GETTING STARTED -->
 > # 实验效果
 
-[![效果][result]](https://example.com) 
+
+1. 任务（1）
+    [![效果][result]](https://example.com) 
+1. 任务（2）
+    [![效果][result2]](https://example.com)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -169,6 +176,7 @@ Distributed under the Unlicense License. See `LICENSE.txt` for more information.
 [linkedin-url]: https://linkedin.com/in/septemus
 [product-screenshot]: images/screenshot.png
 [result]: images/result.png
+[result2]: images/res2.png
 [Next.js]: https://img.shields.io/badge/next.js-000000?style=for-the-badge&logo=nextdotjs&logoColor=white
 [C++]: https://img.shields.io/badge/c++-000000?style=for-the-badge&logo=cplusplus&logoColor=white
 [C++-url]: https://en.wikipedia.org/wiki/C++
