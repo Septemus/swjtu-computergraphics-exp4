@@ -1,4 +1,4 @@
-﻿
+﻿#pragma once
 #include "glIncludes.h"
 #include "Cordinate.h"
 #include <vector>
@@ -15,7 +15,33 @@ public:
 	CCGRenderContext();
 	virtual ~CCGRenderContext();
 	void drawEqualPolygon(const Cordinate<int>* center, int numOfEdges,CString algo=CString(_T("dda")));
+	template<typename T>
+	void drawPolygon(vector<Cordinate<T>*>* const vertices, CString algo = CString(_T("dda"))) {
+		Cordinate<T>* last = NULL;
+		Cordinate<T>* first = NULL;
+		glm::vec3 color;
+		if (algo.CompareNoCase(_T("dda")) == 0) {
+			color = glm::vec3(1.0f, 0.0f, 0.0f);
+		}
+		else if (algo.CompareNoCase(_T("midpoint")) == 0) {
+			color = glm::vec3(0.0f, 1.0f, 0.0f);
+		}
+		else if (algo.CompareNoCase(_T("bresenham")) == 0) {
+			color = glm::vec3(0.0f, 0.9f, 0.9f);
+		}
+		for (vector<Cordinate<T>*>::const_iterator i = vertices->begin(); i != vertices->end();++i) {
+			if (last != NULL) {
+				lineDrawAlgorithm(last, (*i), color, algo);
+			}
+			else {
+				first = (*i);
+			}
+			last = (*i);
+		}
+		lineDrawAlgorithm(last, first, color, algo);
+	}
 	void drawArc(const Cordinate<int>* center, int radius, float angle, glm::vec3 color, CString algo = CString(_T("midpoint")));
+	void drawFilledPolygonByScanline(const vector<Cordinate<int>*>* cordinatesOfVertices);
 	std::vector<Cordinate<int>*>* MidPointCircle(const Cordinate<int>* center, int radius);
 	std::vector<Cordinate<int>*>* BresenhamCircle(const Cordinate<int>* center, int radius);
 	template<typename T>
@@ -90,7 +116,9 @@ public:
 	}
 
 	template<typename T>
-	void lineDrawAlgorithm(Cordinate<T>* start, Cordinate<T>* end, glm::vec3 color,CString algo=CString(_T("dda"))) {
+	void lineDrawAlgorithm(Cordinate<T>*  start,Cordinate<T>*  end, glm::vec3 color,CString algo=CString(_T("dda"))) {
+		start = new Cordinate<T>(start);
+		end = new Cordinate<T>(end);
 		if (start->getX() > end->getX()) {
 			Cordinate<T>* tmp = start;
 			start = end;
@@ -140,6 +168,7 @@ public:
 				glVertex2d((int)(x + 0.5), (int)(y + 0.5)); //在(x,y)处，以颜色color绘像素
 			}
 			glEnd();
+			delete vec;
 		}
 	}
 };

@@ -23,7 +23,8 @@
 
 #include "MFCApplication1Doc.h"
 #include "MFCApplication1View.h"
-
+#include "UIEventHandler.h"
+#include "CScanline.h"
 #ifdef _DEBUG
 #define new DEBUG_NEW
 #endif
@@ -165,6 +166,8 @@ bool CMFCApplication1View::InitGLFW()
 	GetClientRect(&rect);
 	glViewport(0, 0, rect.Width(), rect.Height());
 	m_bGLInitialized = true;
+	glfwSetWindowUserPointer(m_glfwWindow, this); //this也是CCGRenderContext*类型
+	glfwSetMouseButtonCallback(m_glfwWindow,UIEventHandler::MouseButtonCallback);
 	return true;
 }
 
@@ -187,6 +190,9 @@ void CMFCApplication1View::RenderScene(CString m_str)
 			color= glm::vec3(0.0f, 1.0f, 0.0f);
 		}
 		drawArc(pDoc->target, pDoc->radius, pDoc->angle,color,pDoc->algo);
+	}
+	else if (m_str.CompareNoCase(_T("scanline")) == 0) {
+		drawFilledPolygonByScanline(((CScanline*)UIEventHandler::CurCommand())->getCordinates());
 	}
 	glfwSwapBuffers(m_glfwWindow);
 	pDoc->resizing = false;

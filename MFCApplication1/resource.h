@@ -35,13 +35,16 @@
 #define IDC_EDIT3                       1006
 #define IDC_EDIT4                       1007
 #define ID_WRITE_PASTEASHYPERLINK       32770
+#define ID_BUTTON3                      32772
+#define ID_SCANLINE_BUTTON              32772
+#define ID_BUTTON4                      32773
 
 // Next default values for new objects
 // 
 #ifdef APSTUDIO_INVOKED
 #ifndef APSTUDIO_READONLY_SYMBOLS
 #define _APS_NEXT_RESOURCE_VALUE        314
-#define _APS_NEXT_COMMAND_VALUE         32771
+#define _APS_NEXT_COMMAND_VALUE         32774
 #define _APS_NEXT_CONTROL_VALUE         1008
 #define _APS_NEXT_SYMED_VALUE           310
 #endif

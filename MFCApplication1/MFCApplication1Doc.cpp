@@ -14,6 +14,8 @@
 
 #include "pch.h"
 #include "framework.h"
+#include "UIEventHandler.h"
+#include "CScanline.h"
 // SHARED_HANDLERS 可以在实现预览、缩略图和搜索筛选器句柄的
 // ATL 项目中进行定义，并允许与该项目共享文档代码。
 #ifndef SHARED_HANDLERS
@@ -33,6 +35,7 @@
 IMPLEMENT_DYNCREATE(CMFCApplication1Doc, CDocument)
 
 BEGIN_MESSAGE_MAP(CMFCApplication1Doc, CDocument)
+	ON_COMMAND(ID_SCANLINE_BUTTON, &CMFCApplication1Doc::OnScanlineButton)
 END_MESSAGE_MAP()
 
 
@@ -147,3 +150,19 @@ void CMFCApplication1Doc::Dump(CDumpContext& dc) const
 
 
 // CMFCApplication1Doc 命令
+
+
+void CMFCApplication1Doc::OnScanlineButton()
+{
+	// TODO: 在此添加命令处理程序代码
+	if (m_str.CompareNoCase(_T("scanline"))) {
+		m_str = _T("scanline");
+		UIEventHandler::SetCommand(new CScanline());
+	}
+	else {
+		UpdateAllViews(NULL);
+		m_str = _T("");
+		UIEventHandler::DelCommand();
+
+	}
+}

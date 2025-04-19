@@ -12,7 +12,8 @@
 // MFCApplication1Doc.h: CMFCApplication1Doc 类的接口
 //
 #include "Cordinate.h"
-
+#include "vector"
+using namespace std;
 #pragma once
 
 
@@ -60,4 +61,6 @@ protected:
 	// 用于为搜索处理程序设置搜索内容的 Helper 函数
 	void SetSearchContent(const CString& value);
 #endif // SHARED_HANDLERS
+public:
+	afx_msg void OnScanlineButton();
 };

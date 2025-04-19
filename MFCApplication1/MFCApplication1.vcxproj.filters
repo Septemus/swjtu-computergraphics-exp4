@@ -60,6 +60,12 @@
     <ClInclude Include="CDialogButton2.h">
       <Filter>头文件</Filter>
     </ClInclude>
+    <ClInclude Include="UIEventHandler.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="CScanline.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="MFCApplication1.cpp">
@@ -87,6 +93,12 @@
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="CDialogButton2.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="UIEventHandler.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="CScanline.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>

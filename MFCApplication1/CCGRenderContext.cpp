@@ -9,33 +9,15 @@ CCGRenderContext::~CCGRenderContext()
 
 void CCGRenderContext::drawEqualPolygon(const Cordinate<int>* center,int numOfEdges,CString algo)
 {
-	Cordinate<float>* last = NULL;
-	Cordinate<float>* first = NULL;
-	glm::vec3 color;
-	if (algo.CompareNoCase(_T("dda")) == 0) {
-		color = glm::vec3(1.0f, 0.0f, 0.0f);
-	}
-	else if (algo.CompareNoCase(_T("midpoint")) == 0) {
-		color = glm::vec3(0.0f, 1.0f, 0.0f);
-	}
-	else if (algo.CompareNoCase(_T("bresenham")) == 0) {
-		color = glm::vec3(0.0f, 0.9f, 0.9f);
-	}
+	vector<Cordinate<float>*>* vec = new vector<Cordinate<float>*>();
 	for (int i = 0;i < numOfEdges;++i) {
 		float x = center->getX() + 100 * cos((2 * pi * i) / numOfEdges);
 		float y = center->getY() + 100 * sin((2 * pi * i) / numOfEdges);
-		if (last != NULL) {
-			lineDrawAlgorithm(last, new Cordinate<float>(x, y),color,algo);
-		}
-		else {
-			first = new Cordinate<float>(x, y);
-		}
-		last = new Cordinate<float>(x, y);
-		TRACE("%F %F\n", last->getX(), last->getY());
+		vec->push_back(new Cordinate<float>(x, y));
 	}
-	lineDrawAlgorithm(last, first, color, algo);
+	drawPolygon(vec,algo);
+	delete vec;
 }
-
 void CCGRenderContext::drawArc(const Cordinate<int>* center, int radius, float angle, glm::vec3 color, CString algo) {
 	std::vector<Cordinate<int>*>* dots = NULL;
 	if (algo.CompareNoCase(_T("midpoint"))==0) {
@@ -121,6 +103,10 @@ void CCGRenderContext::drawArc(const Cordinate<int>* center, int radius, float a
 		}
 	}
 	glEnd();
+	delete dots;
+	for (int i = 0;i < 9;++i) {
+		delete dots_area[i];
+	}
 }
 
 std::vector<Cordinate<int>*>* CCGRenderContext::MidPointCircle(const Cordinate<int>* center, int radius) {
@@ -183,4 +169,8 @@ std::vector<Cordinate<int>*>* CCGRenderContext::BresenhamCircle(const Cordinate<
 		}
 	}
 	return vec;
+}
+
+void CCGRenderContext::drawFilledPolygonByScanline(const vector<Cordinate<int>*>* cordinatesOfVertices) {
+
 }
