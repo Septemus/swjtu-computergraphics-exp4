@@ -5,7 +5,7 @@ EdgeTable::EdgeTable(int scanBottom, int scanTop):scanBottom(scanBottom),scanTop
 }
 
 void EdgeTable::initScanlineMap(int scanBottom, int scanTop) {
-	for (int i = scanBottom;i < scanTop;++i) {
+	for (int i = scanBottom;i <= scanTop;++i) {
 		edgeItemsOfEveryScanline.insert(
 			{
 				i,
@@ -111,8 +111,14 @@ EdgeTable::EdgeTable(vector<Cordinate<int>*>* const cordinatesOfVertices) {
 EdgeItem::EdgeItem(Cordinate<int>* a, Cordinate<int>* b) {
 	ymax = max(a->getY(), b->getY());
 	x = a->getY() < b->getY() ? a->getX() : b->getX();
-	deltax = a->getX() < b->getX() ? 1/((float)(b->getY()-a->getY())/(b->getX() - a->getX())):1/((float)(a->getY() - b->getY()) / (a->getX() - b->getX()));
+	if (a->getY() != b->getY()&&a->getX()!=b->getX()) {
+		deltax = a->getX() < b->getX() ? 1 / ((float)(b->getY() - a->getY()) / (b->getX() - a->getX())) : 1 / ((float)(a->getY() - b->getY()) / (a->getX() - b->getX()));
+	}
+	else {
+		deltax = 0;
+	}
 }
+	
 
 vector<Cordinate<int>*>* EdgeTable::getFillPoints(EdgeTable* effectiveTable) {
 	vector<Cordinate<int>*>* ret = new vector<Cordinate<int>*>();
