@@ -172,5 +172,13 @@ std::vector<Cordinate<int>*>* CCGRenderContext::BresenhamCircle(const Cordinate<
 }
 
 void CCGRenderContext::drawFilledPolygonByScanline(vector<Cordinate<int>*>* const cordinatesOfVertices) {
+	EdgeTable* table = new EdgeTable(cordinatesOfVertices);
+	vector<Cordinate<int>*>* const points = EdgeTable::getFillPoints(table->buildEffectiveTable());
+	glBegin(GL_POINTS);
+	glColor3f(0.0f, 0.8f, 0.8f);
+	for (vector<Cordinate<int>*>::iterator i = points->begin();i != points->end();++i) {
+		glVertex2i((*i)->getX(), (*i)->getY());
+	}
+	glEnd();
 	drawPolygon(cordinatesOfVertices,_T("midpoint"));
 }

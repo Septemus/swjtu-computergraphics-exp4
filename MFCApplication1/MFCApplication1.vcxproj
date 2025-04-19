@@ -191,8 +191,10 @@
     <ClInclude Include="CCGRenderContext.h" />
     <ClInclude Include="CDialogButton1.h" />
     <ClInclude Include="CDialogButton2.h" />
+    <ClInclude Include="CMyList.h" />
     <ClInclude Include="Cordinate.h" />
     <ClInclude Include="CScanline.h" />
+    <ClInclude Include="EdgeTable.h" />
     <ClInclude Include="framework.h" />
     <ClInclude Include="glIncludes.h" />
     <ClInclude Include="glLinks.h" />
@@ -210,7 +212,9 @@
     <ClCompile Include="CCGRenderContext.cpp" />
     <ClCompile Include="CDialogButton1.cpp" />
     <ClCompile Include="CDialogButton2.cpp" />
+    <ClCompile Include="CMyList.cpp" />
     <ClCompile Include="CScanline.cpp" />
+    <ClCompile Include="EdgeTable.cpp" />
     <ClCompile Include="LeftView.cpp" />
     <ClCompile Include="MainFrm.cpp" />
     <ClCompile Include="MFCApplication1.cpp" />

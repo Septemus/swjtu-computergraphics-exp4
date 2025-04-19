@@ -1,6 +1,7 @@
 ﻿#pragma once
 #include "glIncludes.h"
 #include "Cordinate.h"
+#include "EdgeTable.h"
 #include <vector>
 #define pi 3.141592653589793
 using namespace std;

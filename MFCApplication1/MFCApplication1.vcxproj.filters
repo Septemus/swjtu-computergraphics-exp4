@@ -66,6 +66,12 @@
     <ClInclude Include="CScanline.h">
       <Filter>头文件</Filter>
     </ClInclude>
+    <ClInclude Include="EdgeTable.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="CMyList.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="MFCApplication1.cpp">
@@ -99,6 +105,12 @@
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="CScanline.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="EdgeTable.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="CMyList.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>
