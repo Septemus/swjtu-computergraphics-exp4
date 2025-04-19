@@ -171,6 +171,6 @@ std::vector<Cordinate<int>*>* CCGRenderContext::BresenhamCircle(const Cordinate<
 	return vec;
 }
 
-void CCGRenderContext::drawFilledPolygonByScanline(const vector<Cordinate<int>*>* cordinatesOfVertices) {
-
+void CCGRenderContext::drawFilledPolygonByScanline(vector<Cordinate<int>*>* const cordinatesOfVertices) {
+	drawPolygon(cordinatesOfVertices,_T("midpoint"));
 }

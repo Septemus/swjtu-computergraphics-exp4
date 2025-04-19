@@ -19,7 +19,7 @@ public:
 	void drawPolygon(vector<Cordinate<T>*>* const vertices, CString algo = CString(_T("dda"))) {
 		Cordinate<T>* last = NULL;
 		Cordinate<T>* first = NULL;
-		glm::vec3 color;
+		glm::vec3 color = glm::vec3(1.0f, 1.0f, 1.0f);
 		if (algo.CompareNoCase(_T("dda")) == 0) {
 			color = glm::vec3(1.0f, 0.0f, 0.0f);
 		}
@@ -41,7 +41,7 @@ public:
 		lineDrawAlgorithm(last, first, color, algo);
 	}
 	void drawArc(const Cordinate<int>* center, int radius, float angle, glm::vec3 color, CString algo = CString(_T("midpoint")));
-	void drawFilledPolygonByScanline(const vector<Cordinate<int>*>* cordinatesOfVertices);
+	void drawFilledPolygonByScanline(vector<Cordinate<int>*>* cordinatesOfVertices);
 	std::vector<Cordinate<int>*>* MidPointCircle(const Cordinate<int>* center, int radius);
 	std::vector<Cordinate<int>*>* BresenhamCircle(const Cordinate<int>* center, int radius);
 	template<typename T>
@@ -57,7 +57,7 @@ public:
 			steps = fabs(dy);
 		if (steps == 0)
 			return NULL;
-		T x = start->getX(), y = start->getY();
+		float x = start->getX(), y = start->getY();
 		float xincre = (float)dx / steps, yincre = (float)dy / steps;
 		for (int i = 0; i <= steps; i++)
 		{
@@ -65,7 +65,6 @@ public:
 			x = x + xincre;
 			y = y + yincre;
 		}
-		glEnd();
 		return vec;
 	}
 

@@ -193,6 +193,8 @@ void CMFCApplication1View::RenderScene(CString m_str)
 	}
 	else if (m_str.CompareNoCase(_T("scanline")) == 0) {
 		drawFilledPolygonByScanline(((CScanline*)UIEventHandler::CurCommand())->getCordinates());
+		pDoc->m_str = _T("");
+		UIEventHandler::DelCommand();
 	}
 	glfwSwapBuffers(m_glfwWindow);
 	pDoc->resizing = false;

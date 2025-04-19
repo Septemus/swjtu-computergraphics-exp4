@@ -161,8 +161,5 @@ void CMFCApplication1Doc::OnScanlineButton()
 	}
 	else {
 		UpdateAllViews(NULL);
-		m_str = _T("");
-		UIEventHandler::DelCommand();
-
 	}
 }
