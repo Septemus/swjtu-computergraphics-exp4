@@ -3,14 +3,8 @@
 #include "MFCApplication1Doc.h" //包含View之前要包含Doc
 #include "MFCApplication1View.h" //用户交互绘制，并将图形对象通过Doc添加到场景
 #include "CGLineSegment.h"
+#include "Utils.h"
 // 绘制二维线
-static void draw2dline(glm::dvec3& s, glm::dvec3& e)
-{
-	glBegin(GL_LINES);
-	glVertex2d(s.x, s.y);
-	glVertex2d(e.x, e.y);
-	glEnd();
-}
 CGDraw2DLineSeg::CGDraw2DLineSeg(GLFWwindow* window)
 	:UIEventHandler(window), mStart(0.0, 0.0, 0.0), mEnd(0.0, 0.0, 0.0)
 {
@@ -74,18 +68,18 @@ int CGDraw2DLineSeg::OnMouseButton(GLFWwindow* window, int button, int action, i
 				glLogicOp(GL_XOR); // 使用异或模式实现橡皮线效果GL_XOR
 				glColor3f(0.0f, 0.0f, 1.0f);
 				if (mMoveCount == 0) { //第一次移动
-					draw2dline(start, end); // 绘制新线
+					lineDraw<double>(start, end); // 绘制新线
 					mPrePos1 = mEnd;
 					mPrePos2 = mEnd;
 				}
 				else if (mMoveCount == 1) { //第二次移动
-					draw2dline(start, end); // 绘制新线
+					lineDraw<double>(start, end); // 绘制新线
 					mPrePos2 = mPrePos1;
 					mPrePos1 = mEnd;
 				}
 				else {
-					draw2dline(start, pre2);// 擦除旧线
-					draw2dline(start, end); // 绘制新线
+					lineDraw<double>(start, pre2);// 擦除旧线
+					lineDraw<double>(start, end); // 绘制新线
 					mPrePos2 = mPrePos1;
 					mPrePos1 = mEnd;
 				}
@@ -144,20 +138,20 @@ int CGDraw2DLineSeg::OnCursorPos(GLFWwindow* window, double xpos, double ypos)
 		glLogicOp(GL_XOR); // 使用异或模式实现橡皮线效果GL_XOR
 		glColor3f(0.0f, 0.0f, 1.0f);
 		if (mMoveCount == 0) { //第一次移动
-			draw2dline(start, end); // 绘制新线
+			lineDraw<double>(start, end); // 绘制新线
 			mPrePos1 = mEnd;
 			mPrePos2 = mEnd;
 			mMoveCount++;
 		}
 		else if (mMoveCount == 1) { //第二次移动
-			draw2dline(start, end); // 绘制新线
+			lineDraw<double>(start, end); // 绘制新线
 			mPrePos2 = mPrePos1;
 			mPrePos1 = mEnd;
 			mMoveCount++;
 		}
 		else {
-			draw2dline(start, pre2);// 擦除旧线
-			draw2dline(start, end); // 绘制新线
+			lineDraw<double>(start, pre2);// 擦除旧线
+			lineDraw<double>(start, end); // 绘制新线
 			mPrePos2 = mPrePos1;
 			mPrePos1 = mEnd;
 			mMoveCount++;
@@ -184,7 +178,7 @@ int CGDraw2DLineSeg::Cancel(GLFWwindow* window)
 		glEnable(GL_COLOR_LOGIC_OP);
 		glLogicOp(GL_XOR); // 使用异或模式实现橡皮线效果GL_XOR
 		glColor3f(0.0f, 0.0f, 1.0f);
-		draw2dline(start, pre2);// 擦除旧线
+		lineDraw<double>(start, pre2);// 擦除旧线
 		glDisable(GL_COLOR_LOGIC_OP);
 		glfwSwapBuffers(window);
 	}

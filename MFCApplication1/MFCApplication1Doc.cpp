@@ -31,6 +31,7 @@
 #include "CGLineSegment.h"
 #include "CCGRenderContext.h"
 #include "UIEventHandler.h"
+#include "CGDraw2DLineSeg.h"
 #include <propkey.h>
 
 #ifdef _DEBUG
@@ -195,10 +196,30 @@ bool CMFCApplication1Doc::AddRenderable(std::shared_ptr<CGNode> r)
 void CMFCApplication1Doc::OnDraw2dLineseg()
 {
 	// TODO: 在此添加命令处理程序代码
+	// TODO: 在此添加命令处理程序代码
+	CMFCApplication1View* view = nullptr;
+	POSITION pos = GetFirstViewPosition();
+	while (pos != NULL)
+	{
+		CView* pView = GetNextView(pos);
+		if (pView->IsKindOf(RUNTIME_CLASS(CMFCApplication1View))) {
+			view = dynamic_cast<CMFCApplication1View*>(pView);
+			break;
+		}
+	}
+	if (UIEventHandler::CurCommand()) {
+		UIEventHandler::DelCommand();
+	}
+	if (view != nullptr) {
+		UIEventHandler::SetCommand(new CGDraw2DLineSeg(view->glfwWindow())); //创建绘制直线段的命令对象
+	}
 }
 
 
 void CMFCApplication1Doc::OnUpdateDraw2dLineseg(CCmdUI* pCmdUI)
 {
 	// TODO: 在此添加命令更新用户界面处理程序代码
+	// TODO: 在此添加命令更新用户界面处理程序代码
+	pCmdUI->SetCheck(UIEventHandler::CurCommand() && UIEventHandler::CurCommand()->GetType() == EventType::Draw2DLineSeg);
 }
+
