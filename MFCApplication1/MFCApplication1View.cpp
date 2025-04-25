@@ -14,17 +14,17 @@
 
 #include "pch.h"
 #include "framework.h"
-#include "Cordinate.h"
+
 // SHARED_HANDLERS 可以在实现预览、缩略图和搜索筛选器句柄的
 // ATL 项目中进行定义，并允许与该项目共享文档代码。
 #ifndef SHARED_HANDLERS
 #include "MFCApplication1.h"
 #endif
-
+#include "MainFrm.h"
+#include "UIEventHandler.h"
 #include "MFCApplication1Doc.h"
 #include "MFCApplication1View.h"
 #include "UIEventHandler.h"
-#include "CScanline.h"
 #ifdef _DEBUG
 #define new DEBUG_NEW
 #endif
@@ -44,6 +44,49 @@ BEGIN_MESSAGE_MAP(CMFCApplication1View, CView)
 	ON_WM_ERASEBKGND()
 	ON_WM_SIZE()
 END_MESSAGE_MAP()
+
+
+//状态栏上显示提示信息
+void CMFCApplication1View::ShowPrompt(const std::string& str)
+{
+	CMainFrame* pMainWnd = (CMainFrame*)AfxGetMainWnd();
+	if (pMainWnd != nullptr)
+	{
+		pMainWnd->ShowPrompt(CString(str.c_str()));
+	}
+}
+//状态栏上显示坐标信息
+void CMFCApplication1View::ShowCoord(double x, double y)
+{
+	CString str;
+	glm::dvec3 v = DCS2WCS(glm::dvec3(x, y, 0.0));
+	str.Format(_T("视口坐标 (%.0f, %.0f) : 世界坐标 (%.2f, %.2f) "), x, y, v.x, v.y);
+	CMainFrame* pMainWnd = (CMainFrame*)AfxGetMainWnd();
+	if (pMainWnd != nullptr)
+	{
+		pMainWnd->ShowCoord(str); //显示到状态栏
+	}
+}
+glm::dvec3 CMFCApplication1View::DCS2WCS(const glm::dvec3& p)
+{
+	//暂时使用屏幕设备坐标
+	int w, h;
+	glfwGetWindowSize(m_glfwWindow, &w, &h);
+	return glm::dvec3(p.x, double(h) - p.y, 0.0);
+}
+glm::dvec3 CMFCApplication1View::WCS2DCS(const glm::dvec3& p)
+{
+	//待实现
+	return glm::dvec3();
+}
+bool CMFCApplication1View::AddRenderable(std::shared_ptr<CGNode> r) 
+{
+	CMFCApplication1Doc* pDoc = GetDocument();
+	ASSERT_VALID(pDoc);
+	if (!pDoc)
+		return false;
+	return pDoc->AddRenderable(r);
+}
 
 // CMFCApplication1View 构造/析构
 
@@ -166,38 +209,33 @@ bool CMFCApplication1View::InitGLFW()
 	GetClientRect(&rect);
 	glViewport(0, 0, rect.Width(), rect.Height());
 	m_bGLInitialized = true;
+	//设置回调函数用到的指针（this-当前view）
 	glfwSetWindowUserPointer(m_glfwWindow, this); //this也是CCGRenderContext*类型
-	glfwSetMouseButtonCallback(m_glfwWindow,UIEventHandler::MouseButtonCallback);
+	//设置键盘输入回调
+	glfwSetKeyCallback(m_glfwWindow, UIEventHandler::KeyCallback);
+	//设置鼠标按键回调
+	glfwSetMouseButtonCallback(m_glfwWindow, UIEventHandler::MouseButtonCallback);
+	//设置光标移动回调
+	glfwSetCursorPosCallback(m_glfwWindow, UIEventHandler::CursorPosCallback);
+	//设置鼠标滚轮回调
+	glfwSetScrollCallback(m_glfwWindow, UIEventHandler::ScrollCallback);
 	return true;
 }
 
 void CMFCApplication1View::RenderScene(CString m_str)
 {
-	CMFCApplication1Doc* pDoc = GetDocument();
 	if (!m_bGLInitialized)
 		return;
 	glfwMakeContextCurrent(m_glfwWindow);
 	glfwSwapBuffers(m_glfwWindow);
 	//启用渲染环境
 	//此处添加自定义OpenGL渲染代码...
-	if (m_str.Compare(_T("button1"))==0) {
-		
-		drawEqualPolygon(pDoc->target, pDoc->numOfEdges, pDoc->algo);
+	// 此处添加自定义OpenGL渲染代码...
+	CMFCApplication1Doc* pDoc = GetDocument();
+	ASSERT_VALID(pDoc);
+	if (pDoc) {
+		pDoc->RenderScene((CGRenderContext*)this);
 	}
-	else if(m_str.CompareNoCase(_T("button2"))==0) {
-		glm::vec3 color = glm::vec3(1.0f, 0.0f, 0.0f);
-		if (pDoc->algo == _T("bresenham")) {
-			color= glm::vec3(0.0f, 1.0f, 0.0f);
-		}
-		drawArc(pDoc->target, pDoc->radius, pDoc->angle,color,pDoc->algo);
-	}
-	else if (m_str.CompareNoCase(_T("scanline")) == 0) {
-		drawFilledPolygonByScanline(((CScanline*)UIEventHandler::CurCommand())->getCordinates());
-		pDoc->m_str = _T("");
-		UIEventHandler::DelCommand();
-	}
-	glfwSwapBuffers(m_glfwWindow);
-	pDoc->resizing = false;
 }
 
 

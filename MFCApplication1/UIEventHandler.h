@@ -1,6 +1,7 @@
-﻿#pragma once
-#include "glIncludes.h"
-#include <memory>
+﻿#ifndef _UIEventHandler_H_INCLUDED
+#define _UIEventHandler_H_INCLUDED
+#include "CGObject.h"
+struct GLFWwindow; //预声明（本文件中只用到GLFWwindow*）
 enum class EventType : int //操作命令类型，参考如下定义，可根据需要修改
 {
 	EventNone = 0, //无，显示鼠标指针，不交互画图
@@ -24,9 +25,9 @@ enum class EventType : int //操作命令类型，参考如下定义，可根据
 	Draw2DSquare = 24, //轴对齐正方形（左键第一点，第二点，按较长的方向）
 	Draw2DDiamond = 25, //菱形（左键第一点，第二点形成中心线，两个方向等）
 	Draw2DTriangle = 26, //三角形（不等边scalene, 等边equilateral,等腰isosceles）、直角三角形
-	EventUnknown = 2000,
-	Scanline = 27,
+	EventUnknown = 2000
 };
+//与绘图客户区的交互，使用命令模式，简化CView派生类中键盘、鼠标事件的处理
 class UIEventHandler
 {
 public:
@@ -61,6 +62,12 @@ public:
 	static void ScrollCallback(GLFWwindow* window, double xoffset, double yoffset);
 	//拖放操作
 	static void DropCallback(GLFWwindow* window, int path_count, const char* paths[]);
+	//如果需要附加其他数据（不负责销毁）
+	void SetOwnerData(std::shared_ptr<CGObject> owner, std::shared_ptr<CGObject> data)
+	{
+		mOwnder = owner;
+		mData = data;
+	}
 	//只使用一个命令对象
 	static UIEventHandler* CurCommand();
 	static void DelCommand();
@@ -68,7 +75,8 @@ public:
 protected:
 	int mStep = 0; // 命令操作计数
 	GLFWwindow* mGLFWwindow = nullptr; //GLFW图形绘制窗口
+	std::shared_ptr<CGObject> mOwnder = nullptr; //事件拥有者
+	std::shared_ptr<CGObject> mData = nullptr; //事件附加数据
 	static UIEventHandler* sCommand; //交互命令
-
 };
-
+#endif //_UIEventHandler_H_INCLUDED

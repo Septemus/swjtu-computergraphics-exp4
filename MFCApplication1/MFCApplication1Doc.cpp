@@ -11,11 +11,11 @@
 
 // MFCApplication1Doc.cpp: CMFCApplication1Doc 类的实现
 //
+//
 
 #include "pch.h"
 #include "framework.h"
 #include "UIEventHandler.h"
-#include "CScanline.h"
 // SHARED_HANDLERS 可以在实现预览、缩略图和搜索筛选器句柄的
 // ATL 项目中进行定义，并允许与该项目共享文档代码。
 #ifndef SHARED_HANDLERS
@@ -23,7 +23,14 @@
 #endif
 
 #include "MFCApplication1Doc.h"
-
+#include "MFCApplication1View.h"
+#include "CGScene.h"
+#include "CGCamera.h"
+#include "CGTransform.h"
+#include "CGGeode.h"
+#include "CGLineSegment.h"
+#include "CCGRenderContext.h"
+#include "UIEventHandler.h"
 #include <propkey.h>
 
 #ifdef _DEBUG
@@ -35,7 +42,8 @@
 IMPLEMENT_DYNCREATE(CMFCApplication1Doc, CDocument)
 
 BEGIN_MESSAGE_MAP(CMFCApplication1Doc, CDocument)
-	ON_COMMAND(ID_SCANLINE_BUTTON, &CMFCApplication1Doc::OnScanlineButton)
+	ON_COMMAND(ID_DRAW2D_LINESEG, &CMFCApplication1Doc::OnDraw2dLineseg)
+	ON_UPDATE_COMMAND_UI(ID_DRAW2D_LINESEG, &CMFCApplication1Doc::OnUpdateDraw2dLineseg)
 END_MESSAGE_MAP()
 
 
@@ -44,6 +52,14 @@ END_MESSAGE_MAP()
 CMFCApplication1Doc::CMFCApplication1Doc() noexcept
 {
 	// TODO: 在此添加一次性构造代码
+	mScene = std::make_shared<CGScene>();
+	mScene->SetMainCamera(std::make_shared<CGCamera>());
+	auto e = std::make_shared<CGGeode>();
+	auto line = std::make_shared<CGLineSegment>(glm::dvec3(100, 100, 0), glm::dvec3(400, 300, 0));
+	e->AddChild(line);
+	auto g = std::make_shared<CGTransform>();
+	g->AddChild(e);
+	mScene->SetSceneData(g);
 
 }
 
@@ -152,14 +168,37 @@ void CMFCApplication1Doc::Dump(CDumpContext& dc) const
 // CMFCApplication1Doc 命令
 
 
-void CMFCApplication1Doc::OnScanlineButton()
+bool CMFCApplication1Doc::RenderScene(CGRenderContext* pRC)
+{
+	if (pRC == nullptr)
+		return false;
+	if (mScene == nullptr)
+		return false;
+	CGCamera* pCamera = mScene->GetMainCamera();
+	if (pCamera == nullptr)
+		return false;
+	return mScene->Render(pRC, pCamera);
+}
+
+bool CMFCApplication1Doc::AddRenderable(std::shared_ptr<CGNode> r)
+{
+	if (mScene == nullptr)
+		return false;
+	CGGroup* g = mScene->GetSceneData()->asGroup();
+	if (g) {
+		g->AddChild(r);
+		return true;
+	}
+	return false;
+}
+
+void CMFCApplication1Doc::OnDraw2dLineseg()
 {
 	// TODO: 在此添加命令处理程序代码
-	if (m_str.CompareNoCase(_T("scanline"))) {
-		m_str = _T("scanline");
-		UIEventHandler::SetCommand(new CScanline());
-	}
-	else {
-		UpdateAllViews(NULL);
-	}
+}
+
+
+void CMFCApplication1Doc::OnUpdateDraw2dLineseg(CCmdUI* pCmdUI)
+{
+	// TODO: 在此添加命令更新用户界面处理程序代码
 }

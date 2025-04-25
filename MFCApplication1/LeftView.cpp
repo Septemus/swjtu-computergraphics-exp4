@@ -18,8 +18,6 @@
 #include "MFCApplication1View.h"
 #include "MFCApplication1Doc.h"
 #include "LeftView.h"
-#include "CDialogButton1.h"
-#include "CDialogButton2.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -32,8 +30,6 @@ IMPLEMENT_DYNCREATE(CLeftView, CTreeView)
 
 BEGIN_MESSAGE_MAP(CLeftView, CTreeView)
 	ON_WM_CREATE()
-	ON_BN_CLICKED(BUTTON_1,onButton1Clicked)
-	ON_BN_CLICKED(BUTTON_2,onButton2Clicked)
 END_MESSAGE_MAP()
 
 
@@ -84,19 +80,6 @@ CMFCApplication1Doc* CLeftView::GetDocument() // 非调试版本是内联的
 }
 
 
-afx_msg void CLeftView::onButton1Clicked()
-{
-	CDialogButton1 bt1Dialog;
-	bt1Dialog.DoModal();
-	return;
-}
-
-afx_msg void CLeftView::onButton2Clicked()
-{
-	CDialogButton2 bt2Dialog;
-	bt2Dialog.DoModal();
-	return;
-}
 
 
 // CLeftView 消息处理程序
@@ -106,8 +89,5 @@ int CLeftView::OnCreate(LPCREATESTRUCT lpCreateStruct)
 {
 	if (CTreeView::OnCreate(lpCreateStruct) == -1)
 		return -1;
-	// Create the button
-	button1.Create(_T("正多边形绘制"), WS_CHILD | WS_VISIBLE | BS_PUSHBUTTON, CRect(10, 10, 200, 50), this, BUTTON_1);
-	button2.Create(_T("圆绘制"), WS_CHILD | WS_VISIBLE | BS_PUSHBUTTON, CRect(10, 50, 200, 90), this, BUTTON_2);
 	return 0;
 }

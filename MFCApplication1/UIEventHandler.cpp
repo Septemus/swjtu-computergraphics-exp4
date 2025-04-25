@@ -50,14 +50,13 @@ void UIEventHandler::CharCallback(GLFWwindow* window, unsigned int codepoint)
 {
 	//未实现
 }
-
 //组合键输入，字符也可触发，但修饰符不触发。codepoint是按下的键的unicode码，mods是按下的修饰符。
-void UIEventHandler::CharModsCallback(GLFWwindow* window, unsigned int codepoint, int mods)
+void UIEventHandler::CharModsCallback(GLFWwindow * window, unsigned int codepoint, int mods)
 {
 	//未实现
 }
 //鼠标按键
-void UIEventHandler::MouseButtonCallback(GLFWwindow* window, int button, int action, int mods)
+void UIEventHandler::MouseButtonCallback(GLFWwindow * window, int button, int action, int mods)
 {
 	//CCG20XX110001张三View* pCtx = (CCG20XX110001张三View*)glfwGetWindowUserPointer(window);
 	//if (pCtx) {
@@ -67,16 +66,20 @@ void UIEventHandler::MouseButtonCallback(GLFWwindow* window, int button, int act
 	}
 }
 //光标移动
-void UIEventHandler::CursorPosCallback(GLFWwindow* window, double xpos, double ypos)
+void UIEventHandler::CursorPosCallback(GLFWwindow * window, double xpos, double ypos)
 {
 	CMFCApplication1View* pCtx = (CMFCApplication1View*)glfwGetWindowUserPointer(window);
+	if (pCtx) {
+		pCtx->ShowCoord(xpos, ypos);
+	}
 	if (sCommand) {//命令模式，转发到对应命令对象去处理该事件
 		sCommand->OnCursorPos(window, xpos, ypos);
 	}
 }
 //光标进入或离开
-void UIEventHandler::CursorEnterCallback(GLFWwindow* window, int entered)
+void UIEventHandler::CursorEnterCallback(GLFWwindow * window, int entered)
 {
+
 	//未实现
 }
 //鼠标滚轮

@@ -189,12 +189,17 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="CCGRenderContext.h" />
-    <ClInclude Include="CDialogButton1.h" />
-    <ClInclude Include="CDialogButton2.h" />
-    <ClInclude Include="CMyList.h" />
-    <ClInclude Include="Cordinate.h" />
-    <ClInclude Include="CScanline.h" />
-    <ClInclude Include="EdgeTable.h" />
+    <ClInclude Include="CGCamera.h" />
+    <ClInclude Include="CGDraw2DLineSeg.h" />
+    <ClInclude Include="CGGeode.h" />
+    <ClInclude Include="CGGeometry.h" />
+    <ClInclude Include="CGGroup.h" />
+    <ClInclude Include="CGLineSegment.h" />
+    <ClInclude Include="CGNode.h" />
+    <ClInclude Include="CGObject.h" />
+    <ClInclude Include="CGRenderable.h" />
+    <ClInclude Include="CGScene.h" />
+    <ClInclude Include="CGTransform.h" />
     <ClInclude Include="framework.h" />
     <ClInclude Include="glIncludes.h" />
     <ClInclude Include="glLinks.h" />
@@ -210,11 +215,17 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="CCGRenderContext.cpp" />
-    <ClCompile Include="CDialogButton1.cpp" />
-    <ClCompile Include="CDialogButton2.cpp" />
-    <ClCompile Include="CMyList.cpp" />
-    <ClCompile Include="CScanline.cpp" />
-    <ClCompile Include="EdgeTable.cpp" />
+    <ClCompile Include="CGCamera.cpp" />
+    <ClCompile Include="CGDraw2DLineSeg.cpp" />
+    <ClCompile Include="CGGeode.cpp" />
+    <ClCompile Include="CGGeometry.cpp" />
+    <ClCompile Include="CGGroup.cpp" />
+    <ClCompile Include="CGLineSegment.cpp" />
+    <ClCompile Include="CGNode.cpp" />
+    <ClCompile Include="CGObject.cpp" />
+    <ClCompile Include="CGRenderable.cpp" />
+    <ClCompile Include="CGScene.cpp" />
+    <ClCompile Include="CGTransform.cpp" />
     <ClCompile Include="LeftView.cpp" />
     <ClCompile Include="MainFrm.cpp" />
     <ClCompile Include="MFCApplication1.cpp" />

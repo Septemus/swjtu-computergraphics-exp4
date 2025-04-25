@@ -11,14 +11,25 @@
 
 // MFCApplication1Doc.h: CMFCApplication1Doc 类的接口
 //
-#include "Cordinate.h"
+
 #include "vector"
 using namespace std;
 #pragma once
-
+#include <memory>
+#include "pch.h"
+class CGScene;
+class CGRenderContext;
+class CGNode;
 
 class CMFCApplication1Doc : public CDocument
 {
+	// 特性
+public:
+	std::shared_ptr<CGScene> mScene = nullptr;
+	// 操作
+public:
+	bool RenderScene(CGRenderContext* pRC);
+	bool AddRenderable(std::shared_ptr<CGNode> r);
 protected: // 仅从序列化创建
 	CMFCApplication1Doc() noexcept;
 	DECLARE_DYNCREATE(CMFCApplication1Doc)
@@ -26,7 +37,6 @@ protected: // 仅从序列化创建
 // 特性
 public:
 	CString m_str;
-	const Cordinate<int>* target;
 	CString algo;
 	int numOfEdges;
 	int radius;
@@ -62,5 +72,6 @@ protected:
 	void SetSearchContent(const CString& value);
 #endif // SHARED_HANDLERS
 public:
-	afx_msg void OnScanlineButton();
+	afx_msg void OnDraw2dLineseg();
+	afx_msg void OnUpdateDraw2dLineseg(CCmdUI* pCmdUI);
 };

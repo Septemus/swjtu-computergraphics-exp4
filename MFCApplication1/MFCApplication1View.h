@@ -13,12 +13,24 @@
 //
 
 #pragma once
-
+#include <memory>
+class CGNode;
 #include "glIncludes.h"
 #include "CCGRenderContext.h"
 #include "MFCApplication1Doc.h"
+#include <string>
+
 class CMFCApplication1View : public CView, public CCGRenderContext
 {
+public:
+	GLFWwindow* glfwWindow() const { return m_glfwWindow; }
+	void ShowPrompt(const std::string& str); //状态栏上显示提示信息
+	void ShowCoord(double x, double y); //状态栏上显示坐标信息
+	//根据视口坐标获取对应场景坐标（二维）-调用文档类默认相机的转换函数
+	glm::dvec3 DCS2WCS(const glm::dvec3& p); //设备坐标转世界坐标
+	glm::dvec3 WCS2DCS(const glm::dvec3& p); //世界坐标转设备坐标
+	bool AddRenderable(std::shared_ptr<CGNode> r);
+
 protected: // 仅从序列化创建
 	CMFCApplication1View() noexcept;
 	DECLARE_DYNCREATE(CMFCApplication1View)

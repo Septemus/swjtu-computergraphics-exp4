@@ -27,8 +27,10 @@ protected:
 	CSplitterWnd m_wndSplitter;
 public:
 
-// 操作
+	// 操作
 public:
+	void ShowPrompt(const CString& str); //显示提示信息
+	void ShowCoord(const CString& str); //显示坐标信息
 
 // 重写
 public:

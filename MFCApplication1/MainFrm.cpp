@@ -233,3 +233,15 @@ void CMainFrame::OnViewStyle(UINT nCommandID)
 	}
 }
 
+void CMainFrame::ShowPrompt(const CString& str) //显示提示信息
+{
+	m_wndStatusBar.GetElement(0)->SetText(str);
+	m_wndStatusBar.Invalidate();
+	m_wndStatusBar.UpdateWindow();
+}
+void CMainFrame::ShowCoord(const CString& str) //显示坐标信息
+{
+	m_wndStatusBar.GetExElement(0)->SetText(str);
+	m_wndStatusBar.Invalidate();
+	m_wndStatusBar.UpdateWindow();
+}

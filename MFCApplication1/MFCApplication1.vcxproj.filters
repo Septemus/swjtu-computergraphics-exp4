@@ -51,25 +51,40 @@
     <ClInclude Include="CCGRenderContext.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="Cordinate.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="CDialogButton1.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="CDialogButton2.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
     <ClInclude Include="UIEventHandler.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="CScanline.h">
+    <ClInclude Include="CGObject.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="EdgeTable.h">
+    <ClInclude Include="CGNode.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="CMyList.h">
+    <ClInclude Include="CGGroup.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="CGTransform.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="CGGeode.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="CGRenderable.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="CGGeometry.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="CGLineSegment.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="CGCamera.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="CGScene.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="CGDraw2DLineSeg.h">
       <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>
@@ -95,22 +110,40 @@
     <ClCompile Include="CCGRenderContext.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="CDialogButton1.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="CDialogButton2.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
     <ClCompile Include="UIEventHandler.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="CScanline.cpp">
+    <ClCompile Include="CGObject.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="EdgeTable.cpp">
+    <ClCompile Include="CGNode.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="CMyList.cpp">
+    <ClCompile Include="CGGroup.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="CGTransform.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="CGGeode.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="CGRenderable.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="CGGeometry.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="CGLineSegment.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="CGCamera.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="CGScene.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="CGDraw2DLineSeg.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>
