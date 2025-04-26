@@ -34,3 +34,37 @@ bool CGLineSegment::Render(CGRenderContext* pRC, CGCamera* pCamera)
 	lineDraw<double>(mStart, mEnd);
 	return true;
 }
+
+void CGLineSegment::leftMove() {
+	mStart.x -= 5;
+	mEnd.x -= 5;
+};
+void CGLineSegment::upMove() {
+	mStart.y += 5;
+	mEnd.y += 5;
+};
+void CGLineSegment::downMove() {
+	mStart.y -= 5;
+	mEnd.y -= 5;
+};
+void CGLineSegment::rightMove() {
+	mStart.x += 5;
+	mEnd.x += 5;
+};
+void CGLineSegment::rotate(double sina, double cosa) {
+	Cordinate<double>* midpoint = getCenter();
+	double x1=mStart.x - midpoint->getX();
+	double y1=mStart.y - midpoint->getY();
+	double r1 = sqrt(x1 * x1 + y1 * y1);
+	mStart.x = r1*cosa;
+	mStart.y = r1*sina;
+	mEnd.x = -mStart.x;
+	mEnd.y = -mStart.y;
+	mStart.x += midpoint->getX();
+	mStart.y += midpoint->getY();
+	mEnd.x += midpoint->getX();
+	mEnd.y += midpoint->getY();
+}
+Cordinate<double>* CGLineSegment::getCenter() {
+	return new Cordinate<double>((mStart.x + mEnd.x) / 2, (mStart.y + mEnd.y) / 2);
+}

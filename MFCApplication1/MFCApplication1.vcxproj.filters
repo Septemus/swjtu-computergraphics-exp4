@@ -96,6 +96,15 @@
     <ClInclude Include="CGDraw2DLineStrip.h">
       <Filter>头文件</Filter>
     </ClInclude>
+    <ClInclude Include="CGModel2DTransormMove.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="CGModel2DTransformRotate.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="CGModel2DTransformZoom.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="MFCApplication1.cpp">
@@ -159,6 +168,15 @@
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="CGDraw2DLineStrip.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="CGModel2DTransormMove.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="CGModel2DTransformRotate.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="CGModel2DTransformZoom.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>

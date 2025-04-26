@@ -11,6 +11,7 @@
 #define GLFW_EXPOSE_NATIVE_WIN32
 #include <GLFW/glfw3native.h>
 //可能用到的OpenGL数学库、图像加载库
+#define GLM_ENABLE_EXPERIMENTAL
 #include <glm/glm.hpp>
 #include <glm/ext.hpp>
 #include <SOIL2/SOIL2.h>

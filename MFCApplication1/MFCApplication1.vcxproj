@@ -197,6 +197,9 @@
     <ClInclude Include="CGGeometry.h" />
     <ClInclude Include="CGGroup.h" />
     <ClInclude Include="CGLineSegment.h" />
+    <ClInclude Include="CGModel2DTransformRotate.h" />
+    <ClInclude Include="CGModel2DTransformZoom.h" />
+    <ClInclude Include="CGModel2DTransormMove.h" />
     <ClInclude Include="CGNode.h" />
     <ClInclude Include="CGObject.h" />
     <ClInclude Include="CGRenderable.h" />
@@ -226,6 +229,9 @@
     <ClCompile Include="CGGeometry.cpp" />
     <ClCompile Include="CGGroup.cpp" />
     <ClCompile Include="CGLineSegment.cpp" />
+    <ClCompile Include="CGModel2DTransformRotate.cpp" />
+    <ClCompile Include="CGModel2DTransformZoom.cpp" />
+    <ClCompile Include="CGModel2DTransormMove.cpp" />
     <ClCompile Include="CGNode.cpp" />
     <ClCompile Include="CGObject.cpp" />
     <ClCompile Include="CGRenderable.cpp" />

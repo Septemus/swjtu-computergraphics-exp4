@@ -21,7 +21,7 @@
 #ifndef SHARED_HANDLERS
 #include "MFCApplication1.h"
 #endif
-
+#include "LeftView.h"
 #include "MFCApplication1Doc.h"
 #include "MFCApplication1View.h"
 #include "CGScene.h"
@@ -34,6 +34,9 @@
 #include "CGDraw2DLineSeg.h"
 #include "CGDraw2DLineLoop.h"
 #include "CGDraw2DLineStrip.h"
+#include "CGModel2DTransormMove.h"
+#include "CGModel2DTransformRotate.h"
+#include "CGModel2DTransformZoom.h"
 #include <propkey.h>
 
 #ifdef _DEBUG
@@ -51,6 +54,12 @@ BEGIN_MESSAGE_MAP(CMFCApplication1Doc, CDocument)
 	ON_UPDATE_COMMAND_UI(ID_DRAW2D_LINE_LOOP, &CMFCApplication1Doc::OnUpdateDraw2dLineLoop)
 	ON_COMMAND(ID_DRAW2D_LINE_STRIP, &CMFCApplication1Doc::OnDraw2dLineStrip)
 	ON_UPDATE_COMMAND_UI(ID_DRAW2D_LINE_STRIP, &CMFCApplication1Doc::OnUpdateDraw2dLineStrip)
+	ON_COMMAND(ID_MOVE, &CMFCApplication1Doc::OnMove)
+	ON_UPDATE_COMMAND_UI(ID_MOVE, &CMFCApplication1Doc::OnUpdateMove)
+	ON_COMMAND(ID_ZOOM, &CMFCApplication1Doc::OnZoom)
+	ON_UPDATE_COMMAND_UI(ID_ZOOM, &CMFCApplication1Doc::OnUpdateZoom)
+	ON_COMMAND(ID_MYROTATE, &CMFCApplication1Doc::OnRotation)
+	ON_UPDATE_COMMAND_UI(ID_MYROTATE, &CMFCApplication1Doc::OnUpdateRotation)
 END_MESSAGE_MAP()
 
 
@@ -191,16 +200,27 @@ bool CMFCApplication1Doc::AddRenderable(std::shared_ptr<CGNode> r)
 {
 	if (mScene == nullptr)
 		return false;
-	CGGroup* g = mScene->GetSceneData()->asGroup();
-	if (g) {
-		g->AddChild(r);
+	if (mSelectedGroup) { //需要先选中一各组节点
+		//模型加入实例节点后加入场景
+		auto ge = std::make_shared<CGGeode>();
+		ge->AddChild(r);
+		mSelectedGroup->AddChild(ge);
+		CTreeCtrl& tree = GetLeftView()->GetTreeCtrl();
+		InstToSceneTree(&tree, mSelectedItem, ge.get());
 		return true;
+	}
+	else {
+		AfxMessageBox(_T("请先选择添加子节点的组节点！"));
 	}
 	return false;
 }
 
 void CMFCApplication1Doc::OnDraw2dLineseg()
 {
+	if (!mSelectedGroup) {
+		AfxMessageBox(_T("请先选择添加子节点的组节点！"));
+		return;
+	}
 	// TODO: 在此添加命令处理程序代码
 	// TODO: 在此添加命令处理程序代码
 	CMFCApplication1View* view = nullptr;
@@ -233,6 +253,10 @@ void CMFCApplication1Doc::OnUpdateDraw2dLineseg(CCmdUI* pCmdUI)
 
 void CMFCApplication1Doc::OnDraw2dLineLoop()
 {
+	if (!mSelectedGroup) {
+		AfxMessageBox(_T("请先选择添加子节点的组节点！"));
+		return;
+	}
 	// TODO: 在此添加命令处理程序代码
 	CMFCApplication1View* view = nullptr;
 	POSITION pos = GetFirstViewPosition();
@@ -263,6 +287,10 @@ void CMFCApplication1Doc::OnUpdateDraw2dLineLoop(CCmdUI* pCmdUI)
 
 void CMFCApplication1Doc::OnDraw2dLineStrip()
 {
+	if (!mSelectedGroup) {
+		AfxMessageBox(_T("请先选择添加子节点的组节点！"));
+		return;
+	}
 	// TODO: 在此添加命令处理程序代码
 	CMFCApplication1View* view = nullptr;
 	POSITION pos = GetFirstViewPosition();
@@ -288,4 +316,208 @@ void CMFCApplication1Doc::OnUpdateDraw2dLineStrip(CCmdUI* pCmdUI)
 	// TODO: 在此添加命令更新用户界面处理程序代码
 	// TODO: 在此添加命令更新用户界面处理程序代码
 	pCmdUI->SetCheck(UIEventHandler::CurCommand() && UIEventHandler::CurCommand()->GetType() == EventType::Draw2DLineStrip);
+}
+CLeftView* CMFCApplication1Doc::GetLeftView()
+{
+	POSITION pos = GetFirstViewPosition();
+	while (pos != NULL)
+	{
+		CView* pView = GetNextView(pos);
+		if (pView->IsKindOf(RUNTIME_CLASS(CLeftView))) {
+			CLeftView* view = dynamic_cast<CLeftView*>(pView);
+			return view;
+		}
+	}
+	return nullptr;
+}
+void CMFCApplication1Doc::InstToSceneTree(CTreeCtrl* pTree)
+{
+	TV_INSERTSTRUCT tvinsert;
+	HTREEITEM hInst;
+	tvinsert.hParent = NULL;
+	tvinsert.hInsertAfter = TVI_LAST;
+	tvinsert.item.mask = TVIF_IMAGE | TVIF_SELECTEDIMAGE | TVIF_TEXT | TVIF_PARAM;
+	tvinsert.item.hItem = NULL;
+	tvinsert.item.state = 0;
+	tvinsert.item.stateMask = 0;
+	tvinsert.item.cchTextMax = 40;
+	tvinsert.item.cChildren = 0;
+	tvinsert.item.lParam = NULL;//
+	CString str(_T("场景"));
+	tvinsert.item.pszText = str.GetBuffer();
+	str.ReleaseBuffer();
+	hInst = pTree->InsertItem(&tvinsert);
+	pTree->SetItemData(hInst, DWORD_PTR(mScene.get()));
+	InstToSceneTree(pTree, hInst, mScene->GetSceneData());
+	pTree->Expand(hInst, TVE_EXPAND);
+}
+void CMFCApplication1Doc::InstToSceneTree(CTreeCtrl* pTree, HTREEITEM hParent, CGNode* node)
+{
+	TV_INSERTSTRUCT tvinsert;
+	HTREEITEM hTree;
+	tvinsert.hParent = hParent;
+	tvinsert.hInsertAfter = TVI_LAST;
+	tvinsert.item.mask = TVIF_IMAGE | TVIF_SELECTEDIMAGE | TVIF_TEXT | TVIF_PARAM;
+	tvinsert.item.hItem = NULL;
+	tvinsert.item.state = 0;
+	tvinsert.item.stateMask = 0;
+	tvinsert.item.cchTextMax = 40;
+	tvinsert.item.cChildren = 0;
+	tvinsert.item.lParam = LPARAM(&node);//
+	if (node->asGeode()) {
+		CString str(_T("Geode"));
+		tvinsert.item.pszText = str.GetBuffer();
+		str.ReleaseBuffer();
+		hTree = pTree->InsertItem(&tvinsert);
+		pTree->SetItemData(hTree, DWORD_PTR(node));
+		//叶子实例节点不再显示模型节点
+	}
+	else if (node->asTransform()) {
+		CString str(_T("Trans"));
+		tvinsert.item.pszText = str.GetBuffer();
+		str.ReleaseBuffer();
+		hTree = pTree->InsertItem(&tvinsert);
+		pTree->SetItemData(hTree, DWORD_PTR(node));
+		unsigned int childs = node->asTransform()->GetNumChildren();
+		for (unsigned int i = 0; i < childs; i++) {
+			InstToSceneTree(pTree, hTree, node->asTransform()->GetChild(i));
+		}
+	}
+	else if (node->asGroup()) {
+		CString str(_T("Group"));
+		tvinsert.item.pszText = str.GetBuffer();
+		str.ReleaseBuffer();
+		hTree = pTree->InsertItem(&tvinsert);
+		pTree->SetItemData(hTree, DWORD_PTR(node));
+		unsigned int childs = node->asGroup()->GetNumChildren();
+		for (unsigned int i = 0; i < childs; i++) {
+			InstToSceneTree(pTree, hTree, node->asGroup()->GetChild(i));
+		}
+	}
+}
+void CMFCApplication1Doc::OnSelectSceneTreeItem(CTreeCtrl* pTree, HTREEITEM hItem)
+{
+	mSelectedItem = hItem;
+	if (!mSelectedItem) {
+		mSelectedGroup = nullptr;
+		return;
+	}
+	HTREEITEM hRoot = pTree->GetRootItem();
+	if (mSelectedItem == hRoot) {
+		mSelectedGroup = nullptr;
+	}
+	else {
+		CGGroup* node = (CGGroup*)(pTree->GetItemData(mSelectedItem));
+		if (node && node->asGroup() && !(node->asGeode())) { //不允许叶子节点上再
+			mSelectedGroup = dynamic_cast<CGGroup*>(node);
+		}
+		else {
+			mSelectedGroup = nullptr;
+		}
+	}
+}
+
+void CMFCApplication1Doc::OnMove()
+{
+	// TODO: 在此添加命令处理程序代码
+	if (!mSelectedItem) {
+		AfxMessageBox(_T("请先选择添加节点！"));
+		return;
+	}
+	// TODO: 在此添加命令处理程序代码
+	CMFCApplication1View* view = nullptr;
+	POSITION pos = GetFirstViewPosition();
+	while (pos != NULL)
+	{
+		CView* pView = GetNextView(pos);
+		if (pView->IsKindOf(RUNTIME_CLASS(CMFCApplication1View))) {
+			view = dynamic_cast<CMFCApplication1View*>(pView);
+			break;
+		}
+	}
+	if (UIEventHandler::CurCommand()) {
+		UIEventHandler::DelCommand();
+	}
+	if (view != nullptr) {
+		UIEventHandler::SetCommand(new CGModel2DTransormMove(view->glfwWindow(),(CGGeode*)GetLeftView()->GetTreeCtrl().GetItemData(mSelectedItem) ) ); //创建绘制直线段的命令对象
+	}
+}
+
+
+void CMFCApplication1Doc::OnUpdateMove(CCmdUI* pCmdUI)
+{
+	// TODO: 在此添加命令更新用户界面处理程序代码
+	// TODO: 在此添加命令更新用户界面处理程序代码
+	pCmdUI->SetCheck(UIEventHandler::CurCommand() && UIEventHandler::CurCommand()->GetType() == EventType::Model2DTransformMove);
+}
+
+
+
+
+
+void CMFCApplication1Doc::OnZoom()
+{
+	// TODO: 在此添加命令处理程序代码
+	if (!mSelectedItem) {
+		AfxMessageBox(_T("请先选择添加节点！"));
+		return;
+	}
+	// TODO: 在此添加命令处理程序代码
+	CMFCApplication1View* view = nullptr;
+	POSITION pos = GetFirstViewPosition();
+	while (pos != NULL)
+	{
+		CView* pView = GetNextView(pos);
+		if (pView->IsKindOf(RUNTIME_CLASS(CMFCApplication1View))) {
+			view = dynamic_cast<CMFCApplication1View*>(pView);
+			break;
+		}
+	}
+	if (UIEventHandler::CurCommand()) {
+		UIEventHandler::DelCommand();
+	}
+	if (view != nullptr) {
+		UIEventHandler::SetCommand(new CGModel2DTransformZoom(view->glfwWindow(), (CGGeode*)GetLeftView()->GetTreeCtrl().GetItemData(mSelectedItem))); //创建绘制直线段的命令对象
+	}
+}
+
+
+void CMFCApplication1Doc::OnUpdateZoom(CCmdUI* pCmdUI)
+{
+	// TODO: 在此添加命令更新用户界面处理程序代码
+	pCmdUI->SetCheck(UIEventHandler::CurCommand() && UIEventHandler::CurCommand()->GetType() == EventType::Model2DTransformZoom);
+}
+
+
+void CMFCApplication1Doc::OnRotation()
+{
+	// TODO: 在此添加命令处理程序代码
+	if (!mSelectedItem) {
+		AfxMessageBox(_T("请先选择添加节点！"));
+		return;
+	}
+	// TODO: 在此添加命令处理程序代码
+	CMFCApplication1View* view = nullptr;
+	POSITION pos = GetFirstViewPosition();
+	while (pos != NULL)
+	{
+		CView* pView = GetNextView(pos);
+		if (pView->IsKindOf(RUNTIME_CLASS(CMFCApplication1View))) {
+			view = dynamic_cast<CMFCApplication1View*>(pView);
+			break;
+		}
+	}
+	if (UIEventHandler::CurCommand()) {
+		UIEventHandler::DelCommand();
+	}
+	if (view != nullptr) {
+		UIEventHandler::SetCommand(new CGModel2DTransformRotate(view->glfwWindow(), (CGGeode*)GetLeftView()->GetTreeCtrl().GetItemData(mSelectedItem))); //创建绘制直线段的命令对象
+	}
+}
+
+
+void CMFCApplication1Doc::OnUpdateRotation(CCmdUI* pCmdUI)
+{
+	// TODO: 在此添加命令更新用户界面处理程序代码
+	pCmdUI->SetCheck(UIEventHandler::CurCommand() && UIEventHandler::CurCommand()->GetType() == EventType::Model2DTransformRotate);
 }

@@ -224,5 +224,3 @@ void CMFCApplication1App::SaveCustomState()
 
 // CMFCApplication1App 消息处理程序
 
-
-

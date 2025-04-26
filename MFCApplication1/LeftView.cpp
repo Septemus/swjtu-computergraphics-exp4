@@ -30,6 +30,7 @@ IMPLEMENT_DYNCREATE(CLeftView, CTreeView)
 
 BEGIN_MESSAGE_MAP(CLeftView, CTreeView)
 	ON_WM_CREATE()
+	ON_NOTIFY_REFLECT(TVN_SELCHANGED, &CLeftView::OnTvnSelchanged)
 END_MESSAGE_MAP()
 
 
@@ -42,6 +43,7 @@ CLeftView::CLeftView()
 
 CLeftView::~CLeftView()
 {
+	GetTreeCtrl().DeleteAllItems();
 }
 
 BOOL CLeftView::PreCreateWindow(CREATESTRUCT& cs)
@@ -89,5 +91,42 @@ int CLeftView::OnCreate(LPCREATESTRUCT lpCreateStruct)
 {
 	if (CTreeView::OnCreate(lpCreateStruct) == -1)
 		return -1;
+	// TODO: 在此添加您专用的创建代码
+	CTreeCtrl& tree = GetTreeCtrl();
+	DWORD dwStyles = tree.GetStyle();
+	dwStyles |= TVS_HASBUTTONS | TVS_SHOWSELALWAYS | TVS_HASLINES | TVS_LINESATROOT;// | TVS_CHECKBOXES
+	tree.ModifyStyle(0, dwStyles);
+	CMFCApplication1Doc* pDoc = GetDocument();
+	ASSERT_VALID(pDoc);
+	if (pDoc) {
+		pDoc->InstToSceneTree(&tree);
+	}
 	return 0;
+}
+
+
+void CLeftView::OnUpdate(CView* /*pSender*/, LPARAM /*lHint*/, CObject* /*pHint*/)
+{
+	// TODO: 在此添加专用代码和/或调用基类
+	// TODO: 在此添加专用代码和/或调用基类
+//根据文档中的场景更新场景树的显示
+	CMFCApplication1Doc* pDoc = GetDocument();
+	ASSERT_VALID(pDoc);
+	if (!pDoc)
+		return;
+	GetTreeCtrl().SetRedraw(TRUE);
+}
+
+
+void CLeftView::OnTvnSelchanged(NMHDR* pNMHDR, LRESULT* pResult)
+{
+	LPNMTREEVIEW pNMTreeView = reinterpret_cast<LPNMTREEVIEW>(pNMHDR);
+	// TODO: 在此添加控件通知处理程序代码
+	CMFCApplication1Doc* pDoc = GetDocument();
+	ASSERT_VALID(pDoc);
+	if (!pDoc)
+		return;
+	mSelectedItem = GetTreeCtrl().GetSelectedItem();
+	pDoc->OnSelectSceneTreeItem(&GetTreeCtrl(), mSelectedItem);
+	*pResult = 0;
 }

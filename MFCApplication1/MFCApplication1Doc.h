@@ -17,6 +17,8 @@ using namespace std;
 #pragma once
 #include <memory>
 #include "pch.h"
+class CLeftView;
+class CGGroup;
 class CGScene;
 class CGRenderContext;
 class CGNode;
@@ -78,4 +80,18 @@ public:
 	afx_msg void OnUpdateDraw2dLineLoop(CCmdUI* pCmdUI);
 	afx_msg void OnDraw2dLineStrip();
 	afx_msg void OnUpdateDraw2dLineStrip(CCmdUI* pCmdUI);
+protected:
+	CGGroup* mSelectedGroup = nullptr;
+	HTREEITEM mSelectedItem = nullptr;
+public:
+	CLeftView* GetLeftView();
+	void InstToSceneTree(CTreeCtrl* pTree);//实列节点加入场景树
+	void InstToSceneTree(CTreeCtrl* pTree, HTREEITEM hInst, CGNode* node);
+	void OnSelectSceneTreeItem(CTreeCtrl* pTree, HTREEITEM hItem); //场景树中选中节点
+	afx_msg void OnMove();
+	afx_msg void OnUpdateMove(CCmdUI* pCmdUI);
+	afx_msg void OnZoom();
+	afx_msg void OnUpdateZoom(CCmdUI* pCmdUI);
+	afx_msg void OnRotation();
+	afx_msg void OnUpdateRotation(CCmdUI* pCmdUI);
 };

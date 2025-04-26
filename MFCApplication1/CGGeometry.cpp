@@ -28,3 +28,7 @@ bool CGGeometry::Render(CGRenderContext* pRC, CGCamera* pCamera)
 		return false;
 	return true;
 }
+void CGGeometry::leftMove() {};
+void CGGeometry::upMove() {};
+void CGGeometry::downMove() {};
+void CGGeometry::rightMove() {};

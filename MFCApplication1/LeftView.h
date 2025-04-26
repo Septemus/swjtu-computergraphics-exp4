@@ -58,5 +58,8 @@ private:
 
 
 public:
+	HTREEITEM mSelectedItem = nullptr;
 	afx_msg int OnCreate(LPCREATESTRUCT lpCreateStruct);
+	virtual void OnUpdate(CView* /*pSender*/, LPARAM /*lHint*/, CObject* /*pHint*/);
+	afx_msg void OnTvnSelchanged(NMHDR* pNMHDR, LRESULT* pResult);
 };
