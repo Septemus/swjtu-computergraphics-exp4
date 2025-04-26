@@ -38,7 +38,7 @@
   <p align="center">
     二维图形变换与裁剪实验
     <br />
-    <a href="https://septemus.github.io/computer_graphics_exp2/"><strong>访问博客获得更多信息</strong></a>
+    <a href="https://septemus.github.io/computer_graphics_exp3/"><strong>访问博客获得更多信息</strong></a>
     <br />
     <br />
     <a href="https://github.com/Septemus/swjtu-computergraphics-exp3">View Demo</a>
@@ -151,7 +151,7 @@ Distributed under the Unlicense License. See `LICENSE.txt` for more information.
 <!-- CONTACT -->
 > # 联系
 
-博客留言 - [西南交通大学-计算机图形学实验3-2025年](https://septemus.github.io/computer_graphics_exp2/) - [musketeerdt@gmail.com](musketeerdt@gmail.com)
+博客留言 - [西南交通大学-计算机图形学实验3-2025年](https://septemus.github.io/computer_graphics_exp3/) - [musketeerdt@gmail.com](musketeerdt@gmail.com)
 
 项目源代码仓库: [https://github.com/Septemus/swjtu-computergraphics-exp3](https://github.com/Septemus/swjtu-computergraphics-exp3)
 
