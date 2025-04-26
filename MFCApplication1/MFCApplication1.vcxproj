@@ -192,6 +192,7 @@
     <ClInclude Include="CGCamera.h" />
     <ClInclude Include="CGDraw2DLineLoop.h" />
     <ClInclude Include="CGDraw2DLineSeg.h" />
+    <ClInclude Include="CGDraw2DLineStrip.h" />
     <ClInclude Include="CGGeode.h" />
     <ClInclude Include="CGGeometry.h" />
     <ClInclude Include="CGGroup.h" />
@@ -220,6 +221,7 @@
     <ClCompile Include="CGCamera.cpp" />
     <ClCompile Include="CGDraw2DLineLoop.cpp" />
     <ClCompile Include="CGDraw2DLineSeg.cpp" />
+    <ClCompile Include="CGDraw2DLineStrip.cpp" />
     <ClCompile Include="CGGeode.cpp" />
     <ClCompile Include="CGGeometry.cpp" />
     <ClCompile Include="CGGroup.cpp" />

@@ -76,4 +76,6 @@ public:
 	afx_msg void OnUpdateDraw2dLineseg(CCmdUI* pCmdUI);
 	afx_msg void OnDraw2dLineLoop();
 	afx_msg void OnUpdateDraw2dLineLoop(CCmdUI* pCmdUI);
+	afx_msg void OnDraw2dLineStrip();
+	afx_msg void OnUpdateDraw2dLineStrip(CCmdUI* pCmdUI);
 };

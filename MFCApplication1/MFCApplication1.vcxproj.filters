@@ -93,6 +93,9 @@
     <ClInclude Include="CGDraw2DLineLoop.h">
       <Filter>头文件</Filter>
     </ClInclude>
+    <ClInclude Include="CGDraw2DLineStrip.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="MFCApplication1.cpp">
@@ -153,6 +156,9 @@
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="CGDraw2DLineLoop.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="CGDraw2DLineStrip.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>
