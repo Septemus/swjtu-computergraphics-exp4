@@ -1,4 +1,4 @@
-﻿<!-- Improved compatibility of back to top link: See: https://github.com/Septemus/swjtu-computergraphics-exp2/pull/73 -->
+﻿<!-- Improved compatibility of back to top link: See: https://github.com/Septemus/swjtu-computergraphics-exp3/pull/73 -->
 <a id="readme-top"></a>
 <!--
 *** Thanks for checking out the swjtu-computergraphics-exp. If you have a suggestion
@@ -29,23 +29,23 @@
 <!-- PROJECT LOGO -->
 <br />
 <div align="center">
-  <a href="https://github.com/Septemus/swjtu-computergraphics-exp2">
+  <a href="https://github.com/Septemus/swjtu-computergraphics-exp3">
     <img src="images/logo.png" alt="Logo" width="80" height="80">
   </a>
 
-  <h3 align="center">西南交通大学-计算机图形学实验2-2025年</h3>
+  <h3 align="center">西南交通大学-计算机图形学实验3-2025年</h3>
 
   <p align="center">
-    实验环境与实验程序框架搭建
+    二维图形变换与裁剪实验
     <br />
     <a href="https://septemus.github.io/computer_graphics_exp2/"><strong>访问博客获得更多信息</strong></a>
     <br />
     <br />
-    <a href="https://github.com/Septemus/swjtu-computergraphics-exp2">View Demo</a>
+    <a href="https://github.com/Septemus/swjtu-computergraphics-exp3">View Demo</a>
     &middot;
-    <a href="https://github.com/Septemus/swjtu-computergraphics-exp2/issues/new?labels=bug&template=bug-report---.md">Report Bug</a>
+    <a href="https://github.com/Septemus/swjtu-computergraphics-exp3/issues/new?labels=bug&template=bug-report---.md">Report Bug</a>
     &middot;
-    <a href="https://github.com/Septemus/swjtu-computergraphics-exp2/issues/new?labels=enhancement&template=feature-request---.md">Request Feature</a>
+    <a href="https://github.com/Septemus/swjtu-computergraphics-exp3/issues/new?labels=enhancement&template=feature-request---.md">Request Feature</a>
   </p>
 </div>
 
@@ -56,16 +56,17 @@
 
 
 
-使用实验一的程序项目，根据任务设置程序界面，两周课程依次完成如下任务：
+任务1（第8周）：二维图形程交互绘制（参考资料：`计算机图形学实验参考02.pdf`）
 
+在实验二程序框架基础上，根据提供的实验参考资料，逐步修改图形程序框架，实现自定义可绘制图形对象，场景管理功能，参考线段类的实现，添加工具面板按钮，完成以下图形类构建及交互绘制加入场景，交互绘制要能支持橡皮线功能并使用实验二中直线段绘制算法进行测试）:
 
-1. 任务（1）（第 6 周） 
-    - 实现任意斜率直线段生成算法（DDA 算法、中点算法、Bresenham 算法），每种算法完成任意斜率直线段的绘制。选择 12~24 边的一种正多边形两两顶点相连形成线段进行每种算法测试。（必做）
-    - 实现中点画圆算法（必做），以同心圆簇（若干同心圆）与不同位置的圆进行测试；
-    - Bresenham 画圆算法、圆弧绘制算法，以同心圆簇（若干同心圆）、0-90 度、0-180 度、0-270 度、0-360 度等范围内多个圆弧进行验证（选做）。
-1. 任务（2）（第 7 周）
-    - 实现扫描线多边形填充算法（有效边表多边形填充算法）并至少以多个凸、凹多边形进行验证（包括有水平边的多边形）；（必做）
-    - 实现种子填充算法（四联通的边界表示、内点表示），并使用自己的画圆算法绘制边界边界表示的点阵区域,再作为内点表示的区域进行填充验证。（选做）
+- 学号单号：折线（鼠标左键单击指定第一点，第二点...右键点击作为最后一点结束），类似GL_LINE_STRIP功能
+- 学号双号：闭合线（鼠标左键单击指定第一点，第二点...右键点击最后一点结束），类似GL_LINE_LOOP功能。
+
+任务2(第9周)、二维图形几何变换（参考资料：`计算机图形学实验参考03.pdf`）添加工具面板按钮，实现二维图形的鼠标交互拾取，使用键盘及鼠标控制图形对象的几何变换。
+
+1. 基本几何变换包括：平移、旋转、缩放；按自定义默认参数, 通过派生自定义的事件处理类实现；
+2. 复合几何变换假定参考基准点为图形对象中心，绕基准点旋转、基于该基准点缩放（设计交互命令类支持鼠标交互获取角度、缩放比例）。运行程序目录下要写一个操作说明文档`readme.txt`。
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -90,14 +91,14 @@
 1. 任务（1）
     [![效果][result]](https://example.com) 
 1. 任务（2）
-    [![效果][result2]](https://example.com)
+    
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 
 > # 使用教程
 
-请参考博客：[西南交通大学-计算机图形学实验2-2025年](https://septemus.github.io/computer_graphics_exp2/)
+请参考博客：[西南交通大学-计算机图形学实验3-2025年](https://septemus.github.io/computer_graphics_exp2/)
 
 
 
@@ -107,7 +108,7 @@
 - [x] 在Windows 11,Visual Studio 2022上创建MFC APP实现
 - [ ] 在MacOS,QT6上创建QT APP实现
 
-查看 [open issues](https://github.com/Septemus/swjtu-computergraphics-exp2/issues) 获取功能和问题列表
+查看 [open issues](https://github.com/Septemus/swjtu-computergraphics-exp3/issues) 获取功能和问题列表
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -130,8 +131,8 @@
 
 > ## 贡献者:
 
-<a href="https://github.com/Septemus/swjtu-computergraphics-exp2/graphs/contributors">
-  <img src="https://contrib.rocks/image?repo=septemus/swjtu-computergraphics-exp2" alt="contrib.rocks image" />
+<a href="https://github.com/Septemus/swjtu-computergraphics-exp3/graphs/contributors">
+  <img src="https://contrib.rocks/image?repo=septemus/swjtu-computergraphics-exp3" alt="contrib.rocks image" />
 </a>
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
@@ -150,9 +151,9 @@ Distributed under the Unlicense License. See `LICENSE.txt` for more information.
 <!-- CONTACT -->
 > # 联系
 
-博客留言 - [西南交通大学-计算机图形学实验2-2025年](https://septemus.github.io/computer_graphics_exp2/) - [musketeerdt@gmail.com](musketeerdt@gmail.com)
+博客留言 - [西南交通大学-计算机图形学实验3-2025年](https://septemus.github.io/computer_graphics_exp2/) - [musketeerdt@gmail.com](musketeerdt@gmail.com)
 
-项目源代码仓库: [https://github.com/Septemus/swjtu-computergraphics-exp2](https://github.com/Septemus/swjtu-computergraphics-exp2)
+项目源代码仓库: [https://github.com/Septemus/swjtu-computergraphics-exp3](https://github.com/Septemus/swjtu-computergraphics-exp3)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -162,16 +163,16 @@ Distributed under the Unlicense License. See `LICENSE.txt` for more information.
 
 <!-- MARKDOWN LINKS & IMAGES -->
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
-[contributors-shield]: https://img.shields.io/github/contributors/septemus/swjtu-computergraphics-exp2.svg?style=for-the-badge
-[contributors-url]: https://github.com/Septemus/swjtu-computergraphics-exp2/graphs/contributors
-[forks-shield]: https://img.shields.io/github/forks/septemus/swjtu-computergraphics-exp2.svg?style=for-the-badge
-[forks-url]: https://github.com/Septemus/swjtu-computergraphics-exp2/network/members
-[stars-shield]: https://img.shields.io/github/stars/septemus/swjtu-computergraphics-exp2.svg?style=for-the-badge
-[stars-url]: https://github.com/Septemus/swjtu-computergraphics-exp2/stargazers
-[issues-shield]: https://img.shields.io/github/issues/septemus/swjtu-computergraphics-exp2.svg?style=for-the-badge
-[issues-url]: https://github.com/Septemus/swjtu-computergraphics-exp2/issues
-[license-shield]: https://img.shields.io/github/license/septemus/swjtu-computergraphics-exp2.svg?style=for-the-badge
-[license-url]: https://github.com/Septemus/swjtu-computergraphics-exp2/blob/master/LICENSE.txt
+[contributors-shield]: https://img.shields.io/github/contributors/septemus/swjtu-computergraphics-exp3.svg?style=for-the-badge
+[contributors-url]: https://github.com/Septemus/swjtu-computergraphics-exp3/graphs/contributors
+[forks-shield]: https://img.shields.io/github/forks/septemus/swjtu-computergraphics-exp3.svg?style=for-the-badge
+[forks-url]: https://github.com/Septemus/swjtu-computergraphics-exp3/network/members
+[stars-shield]: https://img.shields.io/github/stars/septemus/swjtu-computergraphics-exp3.svg?style=for-the-badge
+[stars-url]: https://github.com/Septemus/swjtu-computergraphics-exp3/stargazers
+[issues-shield]: https://img.shields.io/github/issues/septemus/swjtu-computergraphics-exp3.svg?style=for-the-badge
+[issues-url]: https://github.com/Septemus/swjtu-computergraphics-exp3/issues
+[license-shield]: https://img.shields.io/github/license/septemus/swjtu-computergraphics-exp3.svg?style=for-the-badge
+[license-url]: https://github.com/Septemus/swjtu-computergraphics-exp3/blob/master/LICENSE.txt
 [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
 [linkedin-url]: https://linkedin.com/in/septemus
 [product-screenshot]: images/screenshot.png
