@@ -32,6 +32,7 @@
 #include "CCGRenderContext.h"
 #include "UIEventHandler.h"
 #include "CGDraw2DLineSeg.h"
+#include "CGDraw2DLineLoop.h"
 #include <propkey.h>
 
 #ifdef _DEBUG
@@ -45,6 +46,8 @@ IMPLEMENT_DYNCREATE(CMFCApplication1Doc, CDocument)
 BEGIN_MESSAGE_MAP(CMFCApplication1Doc, CDocument)
 	ON_COMMAND(ID_DRAW2D_LINESEG, &CMFCApplication1Doc::OnDraw2dLineseg)
 	ON_UPDATE_COMMAND_UI(ID_DRAW2D_LINESEG, &CMFCApplication1Doc::OnUpdateDraw2dLineseg)
+	ON_COMMAND(ID_DRAW2D_LINE_LOOP, &CMFCApplication1Doc::OnDraw2dLineLoop)
+	ON_UPDATE_COMMAND_UI(ID_DRAW2D_LINE_LOOP, &CMFCApplication1Doc::OnUpdateDraw2dLineLoop)
 END_MESSAGE_MAP()
 
 
@@ -223,3 +226,33 @@ void CMFCApplication1Doc::OnUpdateDraw2dLineseg(CCmdUI* pCmdUI)
 	pCmdUI->SetCheck(UIEventHandler::CurCommand() && UIEventHandler::CurCommand()->GetType() == EventType::Draw2DLineSeg);
 }
 
+
+
+void CMFCApplication1Doc::OnDraw2dLineLoop()
+{
+	// TODO: 在此添加命令处理程序代码
+	CMFCApplication1View* view = nullptr;
+	POSITION pos = GetFirstViewPosition();
+	while (pos != NULL)
+	{
+		CView* pView = GetNextView(pos);
+		if (pView->IsKindOf(RUNTIME_CLASS(CMFCApplication1View))) {
+			view = dynamic_cast<CMFCApplication1View*>(pView);
+			break;
+		}
+	}
+	if (UIEventHandler::CurCommand()) {
+		UIEventHandler::DelCommand();
+	}
+	if (view != nullptr) {
+		UIEventHandler::SetCommand(new CGDraw2DLineLoop(view->glfwWindow())); //创建绘制直线段的命令对象
+	}
+}
+
+
+void CMFCApplication1Doc::OnUpdateDraw2dLineLoop(CCmdUI* pCmdUI)
+{
+	// TODO: 在此添加命令更新用户界面处理程序代码
+	// TODO: 在此添加命令更新用户界面处理程序代码
+	pCmdUI->SetCheck(UIEventHandler::CurCommand() && UIEventHandler::CurCommand()->GetType() == EventType::Draw2DLineLoop);
+}

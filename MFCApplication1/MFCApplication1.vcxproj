@@ -190,6 +190,7 @@
   <ItemGroup>
     <ClInclude Include="CCGRenderContext.h" />
     <ClInclude Include="CGCamera.h" />
+    <ClInclude Include="CGDraw2DLineLoop.h" />
     <ClInclude Include="CGDraw2DLineSeg.h" />
     <ClInclude Include="CGGeode.h" />
     <ClInclude Include="CGGeometry.h" />
@@ -217,6 +218,7 @@
   <ItemGroup>
     <ClCompile Include="CCGRenderContext.cpp" />
     <ClCompile Include="CGCamera.cpp" />
+    <ClCompile Include="CGDraw2DLineLoop.cpp" />
     <ClCompile Include="CGDraw2DLineSeg.cpp" />
     <ClCompile Include="CGGeode.cpp" />
     <ClCompile Include="CGGeometry.cpp" />

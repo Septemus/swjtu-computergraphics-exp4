@@ -111,7 +111,7 @@ int CGDraw2DLineSeg::OnCursorPos(GLFWwindow* window, double xpos, double ypos)
 	if (mStep == 0) { //还没点击第一个点（获取线段起点）
 		view->ShowPrompt("请鼠标左键单击输入直线段的起点"); //状态栏显示
 	}
-	else if (mStep == 1) { //已经输入了起点后，当前鼠标移动的位置与起点形成橡皮线
+	else if (mStep >= 1) { //已经输入了起点后，当前鼠标移动的位置与起点形成橡皮线
 		if (xpos == mStart.x && ypos == mStart.y) {
 			return -1; //两点重合，不做处理
 		}
@@ -171,7 +171,7 @@ int CGDraw2DLineSeg::Cancel(GLFWwindow* window)
 	CMFCApplication1View* view = (CMFCApplication1View*)glfwGetWindowUserPointer(window);
 	if (view == nullptr)
 		return -1;
-	if (mStep == 1) { //如果已经单击左键一次，则结束操作前删除橡皮线
+	if (mStep >= 1) { //如果已经单击左键一次，则结束操作前删除橡皮线
 		glm::dvec3 start = view->DCS2WCS(mStart);
 		glm::dvec3 pre2 = view->DCS2WCS(mPrePos2);
 		//擦除最后橡皮线

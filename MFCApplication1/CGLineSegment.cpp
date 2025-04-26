@@ -1,5 +1,6 @@
 ﻿#include "pch.h"
 #include "CGLineSegment.h"
+#include "Utils.h"
 IMPLEMENT_SERIAL(CGLineSegment, CGGeometry, 1)
 CGLineSegment::CGLineSegment()
 	: mStart(glm::dvec3(0.0, 0.0, 0.0)), mEnd(glm::dvec3(0.0, 0.0, 0.0))
@@ -30,9 +31,6 @@ bool CGLineSegment::Render(CGRenderContext* pRC, CGCamera* pCamera)
 	if (pRC == nullptr || pCamera == nullptr)
 		return false;
 	glColor3f(1.0f, 1.0f, 1.0f); // 白色
-	glBegin(GL_LINES);
-	glVertex3f(mStart.x, mStart.y, mStart.z);
-	glVertex3f(mEnd.x, mEnd.y, mEnd.z);
-	glEnd();
+	lineDraw<double>(mStart, mEnd);
 	return true;
 }
