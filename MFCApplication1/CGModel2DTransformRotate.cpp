@@ -23,9 +23,11 @@ int CGModel2DTransformRotate::OnMouseButton(GLFWwindow* window, int button, int 
 		return -1;
 	if (button == GLFW_MOUSE_BUTTON_LEFT) {
 		if (action == GLFW_PRESS) {
+			view->changeCursor(IDC_HAND);
 			pressing = true;
 		}
 		else if (action == GLFW_RELEASE) {
+			view->changeCursor(IDC_ARROW);
 			pressing = false;
 		}
 	}

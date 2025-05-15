@@ -306,3 +306,6 @@ void CMFCApplication1View::OnDraw(CDC* /*pDC*/)
 	// TODO: 在此处为本机数据添加绘制代码
 	RenderScene(pDoc->m_str);
 }
+void CMFCApplication1View::changeCursor(LPCTSTR IpscCursorName) {
+	SetCursor(AfxGetApp()->LoadStandardCursor(IpscCursorName));
+}

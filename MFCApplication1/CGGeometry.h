@@ -16,6 +16,7 @@ public:
 	virtual void rightMove();
 	virtual void downMove();
 	virtual void rotate(double sina, double cosa) {}
+	virtual void zoom(double ratio){}
 	virtual Cordinate<double>* getCenter() { return nullptr; };
 protected:
 };

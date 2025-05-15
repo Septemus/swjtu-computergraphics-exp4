@@ -16,9 +16,12 @@ public:
 	virtual void rightMove() override;
 	virtual void downMove() override;
 	virtual void rotate(double sina, double cosa) override;
+	virtual void zoom(double ratio) override;
 	virtual Cordinate<double>* getCenter() override;
 protected:
 	glm::dvec3 mStart;
 	glm::dvec3 mEnd;
+	glm::dvec3 oStart;
+	glm::dvec3 oEnd;
 protected:
 };
