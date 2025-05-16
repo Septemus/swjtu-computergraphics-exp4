@@ -38,7 +38,7 @@
   <p align="center">
     二维图形变换与裁剪实验
     <br />
-    <a href="https://septemus.github.io/computer_graphics_exp2/"><strong>访问博客获得更多信息</strong></a>
+    <a href="https://septemus.github.io/computer_graphics_exp3/"><strong>访问博客获得更多信息</strong></a>
     <br />
     <br />
     <a href="https://github.com/Septemus/swjtu-computergraphics-exp3">View Demo</a>
@@ -57,6 +57,8 @@
 
 
 任务1（第8周）：二维图形程交互绘制（参考资料：`计算机图形学实验参考02.pdf`）
+
+
 
 在实验二程序框架基础上，根据提供的实验参考资料，逐步修改图形程序框架，实现自定义可绘制图形对象，场景管理功能，参考线段类的实现，添加工具面板按钮，完成以下图形类构建及交互绘制加入场景，交互绘制要能支持橡皮线功能并使用实验二中直线段绘制算法进行测试）:
 
@@ -91,6 +93,7 @@
 1. 任务（1）
     [![效果][result]](https://example.com) 
 1. 任务（2）
+    [![效果][result2]](https://example.com)
     
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
@@ -98,7 +101,7 @@
 
 > # 使用教程
 
-请参考博客：[西南交通大学-计算机图形学实验3-2025年](https://septemus.github.io/computer_graphics_exp2/)
+请参考博客：[西南交通大学-计算机图形学实验3-2025年](https://septemus.github.io/computer_graphics_exp3/)
 
 
 
@@ -151,7 +154,7 @@ Distributed under the Unlicense License. See `LICENSE.txt` for more information.
 <!-- CONTACT -->
 > # 联系
 
-博客留言 - [西南交通大学-计算机图形学实验3-2025年](https://septemus.github.io/computer_graphics_exp2/) - [musketeerdt@gmail.com](musketeerdt@gmail.com)
+博客留言 - [西南交通大学-计算机图形学实验3-2025年](https://septemus.github.io/computer_graphics_exp3/) - [musketeerdt@gmail.com](musketeerdt@gmail.com)
 
 项目源代码仓库: [https://github.com/Septemus/swjtu-computergraphics-exp3](https://github.com/Septemus/swjtu-computergraphics-exp3)
 
@@ -177,7 +180,7 @@ Distributed under the Unlicense License. See `LICENSE.txt` for more information.
 [linkedin-url]: https://linkedin.com/in/septemus
 [product-screenshot]: images/screenshot.png
 [result]: images/result.png
-[result2]: images/res2.png
+[result2]: images/result2.png
 [Next.js]: https://img.shields.io/badge/next.js-000000?style=for-the-badge&logo=nextdotjs&logoColor=white
 [C++]: https://img.shields.io/badge/c++-000000?style=for-the-badge&logo=cplusplus&logoColor=white
 [C++-url]: https://en.wikipedia.org/wiki/C++
