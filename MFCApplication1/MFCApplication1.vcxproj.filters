@@ -105,6 +105,15 @@
     <ClInclude Include="CGModel2DTransformZoom.h">
       <Filter>头文件</Filter>
     </ClInclude>
+    <ClInclude Include="CGRenderState.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="TessellationHints.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="CGCube.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="MFCApplication1.cpp">
@@ -177,6 +186,15 @@
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="CGModel2DTransformZoom.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="CGRenderState.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="TessellationHints.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="CGCube.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>

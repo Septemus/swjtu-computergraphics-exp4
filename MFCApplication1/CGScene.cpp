@@ -6,6 +6,8 @@
 IMPLEMENT_SERIAL(CGScene, CGObject, 1)
 CGScene::CGScene()
 {
+	SetMainCamera(std::make_shared<CGCamera>());
+	SetSceneData(std::make_shared<CGTransform>());
 }
 CGScene::~CGScene()
 {
