@@ -579,7 +579,7 @@ void CMFCApplication1Doc::OnUpdateCylinder(CCmdUI* pCmdUI)
 {
 	// TODO: 在此添加命令更新用户界面处理程序代码
 }
-void CMFCApplication1Doc::drawBall(int radius, int slice, int stack,int xval=300,int yval=200) {
+void CMFCApplication1Doc::drawBall(int radius, int slice, int stack,bool useSkeleton,int xval=300,int yval=200) {
 	//球体（模型）
 	auto c = std::make_shared<CGBall>();
 	auto h = std::make_shared<TessellationHints>();
@@ -597,6 +597,10 @@ void CMFCApplication1Doc::drawBall(int radius, int slice, int stack,int xval=300
 	t1->rotate(45, 1, 1, 1);
 	t1->scale(radius, radius, radius);
 	e1->AddChild(c);
+	if (useSkeleton) {
+		auto p = std::make_shared<CGPolygonMode>(PM_LINE, PM_LINE); //设置线框模式
+		e1->gocRenderStateSet()->setRenderState(p, -1); //设置节点属性
+	}
 	t1->AddChild(e1);
 	mScene->GetSceneData()->asGroup()->AddChild(t1);
 	CTreeCtrl& tree = GetLeftView()->GetTreeCtrl();

@@ -34,8 +34,10 @@
 #define IDC_SLICE_VALUE                 1018
 #define IDC_STACK_VALUE                 1019
 #define IDC_X_AXIS                      1020
-#define IDC_EDIT2                       1021
 #define IDC_Y_AXIS                      1021
+#define IDC_SKELETON                    1023
+#define IDC_RADIO3                      1024
+#define IDC_SURFACE                     1024
 #define ID_WRITE_PASTEASHYPERLINK       32770
 #define ID_BUTTON3                      32772
 #define ID_SCANLINE_BUTTON              32772
@@ -57,7 +59,7 @@
 #ifndef APSTUDIO_READONLY_SYMBOLS
 #define _APS_NEXT_RESOURCE_VALUE        316
 #define _APS_NEXT_COMMAND_VALUE         32780
-#define _APS_NEXT_CONTROL_VALUE         1022
+#define _APS_NEXT_CONTROL_VALUE         1025
 #define _APS_NEXT_SYMED_VALUE           310
 #endif
 #endif

@@ -11,6 +11,8 @@ CBallDialog::~CBallDialog() {
 }BEGIN_MESSAGE_MAP(CBallDialog, CDialog)
 ON_BN_CLICKED(IDOK, &CBallDialog::OnBnClickedOk)
 ON_WM_HSCROLL()
+ON_BN_CLICKED(IDC_SKELETON, &CBallDialog::OnBnClickedSkeleton)
+ON_BN_CLICKED(IDC_SURFACE, &CBallDialog::OnBnClickedSurface)
 END_MESSAGE_MAP()
 
 
@@ -24,7 +26,7 @@ void CBallDialog::OnBnClickedOk()
 	CString tmpx,tmpy;
 	xedit->GetWindowTextW(tmpx);
 	yedit->GetWindowTextW(tmpy);
-	pDoc->drawBall(radius, slice, stack,_ttoi(tmpx),_ttoi(tmpy));
+	pDoc->drawBall(radius, slice, stack,useSkeleton,_ttoi(tmpx),_ttoi(tmpy));
 	CDialog::OnOK();
 }
 void CBallDialog::OnHScroll(UINT nSHCode, UINT nPos, CScrollBar* pScrollBar)
@@ -59,4 +61,17 @@ void CBallDialog::OnHScroll(UINT nSHCode, UINT nPos, CScrollBar* pScrollBar)
 	CWnd* stackValue = GetDlgItem(IDC_STACK_VALUE);
 	stackValue->SetWindowTextW(t);
 	CDialog::OnHScroll(nSHCode, nPos, pScrollBar);
+}
+
+void CBallDialog::OnBnClickedSkeleton()
+{
+	// TODO: 在此添加控件通知处理程序代码
+	useSkeleton = true;
+}
+
+
+void CBallDialog::OnBnClickedSurface()
+{
+	// TODO: 在此添加控件通知处理程序代码
+	useSkeleton = false;
 }
