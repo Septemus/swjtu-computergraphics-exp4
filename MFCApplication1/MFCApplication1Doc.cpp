@@ -40,6 +40,7 @@
 #include "CGCube.h"
 #include "TessellationHints.h"
 #include "CBallDialog.h"
+#include "CGBall.h"
 #include <propkey.h>
 
 #ifdef _DEBUG
@@ -119,7 +120,7 @@ BOOL CMFCApplication1Doc::OnNewDocument()
 		return FALSE;
 
 	// TODO: 在此添加重新初始化代码
-	SetTitle(_T("图形学实验3"));
+	SetTitle(_T("图形学实验4"));
 	// (SDI 文档将重用该文档)
 
 	return TRUE;
@@ -577,4 +578,40 @@ void CMFCApplication1Doc::OnCylinder()
 void CMFCApplication1Doc::OnUpdateCylinder(CCmdUI* pCmdUI)
 {
 	// TODO: 在此添加命令更新用户界面处理程序代码
+}
+void CMFCApplication1Doc::drawBall(int radius, int slice, int stack) {
+	//球体（模型）
+	auto c = std::make_shared<CGBall>();
+	auto h = std::make_shared<TessellationHints>();
+	h->setTargetSlices(slice);
+	h->setTargetStacks(stack);
+	c->setTessellationHints(h);
+	c->setDisplayListEnabled(true);
+	//右长方体实例节点
+	auto t1 = std::make_shared<CGTransform>(); //实列组节点
+	auto e1 = std::make_shared<CGGeode>(); //实列叶节点
+	auto color1 = std::make_shared<CGColor>(); //属性
+	color1->setValue(glm::vec4(0.0f, 1.0f, 0.0f, 1.0f)); //绿色
+	e1->gocRenderStateSet()->setRenderState(color1, -1); //设置节点属性
+	t1->translate(300, 200, 0);
+	t1->rotate(45, 1, 1, 1);
+	t1->scale(radius, radius, radius);
+	e1->AddChild(c);
+	t1->AddChild(e1);
+	mScene->GetSceneData()->asGroup()->AddChild(t1);
+	CTreeCtrl& tree = GetLeftView()->GetTreeCtrl();
+	HTREEITEM hRoot = tree.GetRootItem();
+	InstToSceneTree(&tree, tree.GetChildItem(hRoot), t1.get());
+	CMFCApplication1View* view = nullptr;
+	POSITION pos = GetFirstViewPosition();
+	while (pos != NULL)
+	{
+		CView* pView = GetNextView(pos);
+		if (pView->IsKindOf(RUNTIME_CLASS(CMFCApplication1View))) {
+			view = dynamic_cast<CMFCApplication1View*>(pView);
+			break;
+		}
+	}
+	view->Invalidate(); //客户区需要重绘
+	view->UpdateWindow(); //客户区执行重绘
 }

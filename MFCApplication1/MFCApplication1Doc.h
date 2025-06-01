@@ -98,4 +98,5 @@ public:
 	afx_msg void OnUpdateDrawBall(CCmdUI* pCmdUI);
 	afx_msg void OnCylinder();
 	afx_msg void OnUpdateCylinder(CCmdUI* pCmdUI);
+	void drawBall(int radius, int slice, int stack);
 };

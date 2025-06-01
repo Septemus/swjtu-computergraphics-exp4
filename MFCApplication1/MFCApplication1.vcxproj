@@ -190,6 +190,7 @@
   <ItemGroup>
     <ClInclude Include="CBallDialog.h" />
     <ClInclude Include="CCGRenderContext.h" />
+    <ClInclude Include="CGBall.h" />
     <ClInclude Include="CGCamera.h" />
     <ClInclude Include="CGCube.h" />
     <ClInclude Include="CGDraw2DLineLoop.h" />
@@ -226,6 +227,7 @@
   <ItemGroup>
     <ClCompile Include="CBallDialog.cpp" />
     <ClCompile Include="CCGRenderContext.cpp" />
+    <ClCompile Include="CGBall.cpp" />
     <ClCompile Include="CGCamera.cpp" />
     <ClCompile Include="CGCube.cpp" />
     <ClCompile Include="CGDraw2DLineLoop.cpp" />

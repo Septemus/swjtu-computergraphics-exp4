@@ -4,6 +4,7 @@
 #include "glIncludes.h"
 
 using namespace std;
+#define PI 3.14159265358979323846
 template<typename T>
 vector<Cordinate<T>*>* MidPointLine(Cordinate<T>* start, Cordinate<T>* end) {
 	std::vector<Cordinate<T>*>* vec = new std::vector<Cordinate<T>*>();

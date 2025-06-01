@@ -1,5 +1,7 @@
 ﻿#include "pch.h"
 #include "CBallDialog.h"
+#include "MainFrm.h"
+#include "MFCApplication1Doc.h"
 CBallDialog::CBallDialog() :CDialog(CBallDialog::IDD) {
 
 }
@@ -15,6 +17,9 @@ END_MESSAGE_MAP()
 void CBallDialog::OnBnClickedOk()
 {
 	// TODO: 在此添加控件通知处理程序代码
+	CMainFrame* pMain = (CMainFrame*)AfxGetApp()->m_pMainWnd;
+	CMFCApplication1Doc* pDoc = (CMFCApplication1Doc*)pMain->GetActiveDocument();
+	pDoc->drawBall(radius, slice, stack);
 	CDialog::OnOK();
 }
 void CBallDialog::OnHScroll(UINT nSHCode, UINT nPos, CScrollBar* pScrollBar)
