@@ -3,8 +3,10 @@
 // 供 MFCApplication1.rc 使用
 //
 #define IDD_BALL_DIALOG                 5
+#define IDD_BALL_DIALOG2                6
 #define IDD_ABOUTBOX                    100
 #define IDP_OLE_INIT_FAILED             100
+#define IDD_CYLINDER_DIALOG             101
 #define IDB_WRITESMALL                  110
 #define IDB_WRITELARGE                  111
 #define IDB_MAIN                        112
@@ -36,8 +38,14 @@
 #define IDC_X_AXIS                      1020
 #define IDC_Y_AXIS                      1021
 #define IDC_SKELETON                    1023
-#define IDC_RADIO3                      1024
 #define IDC_SURFACE                     1024
+#define IDC_DOWN_RADIUS                 1025
+#define IDC_DOWN_RADIUS_VALUE           1026
+#define IDC_UP_RADIUS_VALUE             1027
+#define IDC_UP_RADIUS                   1028
+#define IDC_SLIDER2                     1029
+#define IDC_HEIGHT                      1029
+#define IDC_HEIGHT_VALUE                1030
 #define ID_WRITE_PASTEASHYPERLINK       32770
 #define ID_BUTTON3                      32772
 #define ID_SCANLINE_BUTTON              32772
@@ -59,7 +67,7 @@
 #ifndef APSTUDIO_READONLY_SYMBOLS
 #define _APS_NEXT_RESOURCE_VALUE        316
 #define _APS_NEXT_COMMAND_VALUE         32780
-#define _APS_NEXT_CONTROL_VALUE         1025
+#define _APS_NEXT_CONTROL_VALUE         1031
 #define _APS_NEXT_SYMED_VALUE           310
 #endif
 #endif

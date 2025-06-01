@@ -120,6 +120,12 @@
     <ClInclude Include="CGBall.h">
       <Filter>头文件</Filter>
     </ClInclude>
+    <ClInclude Include="CCylinderDialog.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="CGCylinder.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="MFCApplication1.cpp">
@@ -207,6 +213,12 @@
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="CGBall.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="CCylinderDialog.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="CGCylinder.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>

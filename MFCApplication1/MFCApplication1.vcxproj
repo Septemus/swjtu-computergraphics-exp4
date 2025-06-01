@@ -190,9 +190,11 @@
   <ItemGroup>
     <ClInclude Include="CBallDialog.h" />
     <ClInclude Include="CCGRenderContext.h" />
+    <ClInclude Include="CCylinderDialog.h" />
     <ClInclude Include="CGBall.h" />
     <ClInclude Include="CGCamera.h" />
     <ClInclude Include="CGCube.h" />
+    <ClInclude Include="CGCylinder.h" />
     <ClInclude Include="CGDraw2DLineLoop.h" />
     <ClInclude Include="CGDraw2DLineSeg.h" />
     <ClInclude Include="CGDraw2DLineStrip.h" />
@@ -227,9 +229,11 @@
   <ItemGroup>
     <ClCompile Include="CBallDialog.cpp" />
     <ClCompile Include="CCGRenderContext.cpp" />
+    <ClCompile Include="CCylinderDialog.cpp" />
     <ClCompile Include="CGBall.cpp" />
     <ClCompile Include="CGCamera.cpp" />
     <ClCompile Include="CGCube.cpp" />
+    <ClCompile Include="CGCylinder.cpp" />
     <ClCompile Include="CGDraw2DLineLoop.cpp" />
     <ClCompile Include="CGDraw2DLineSeg.cpp" />
     <ClCompile Include="CGDraw2DLineStrip.cpp" />
