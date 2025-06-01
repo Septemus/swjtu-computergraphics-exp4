@@ -15,9 +15,6 @@ void CGBall::setTessellationHints(std::shared_ptr<TessellationHints> hints)
 void CGBall::buildDisplayList()
 {
 	TessellationHints* hints = tessellationHints();
-	deleteDisplayList();
-	mDisplayList = glGenLists(1);
-	glNewList(mDisplayList, GL_COMPILE);
 	double sliceDelta = 2.0 * PI / hints->targetSlices(); 
 	double stackDelta = PI / hints->targetStacks();
 	for (int stack = 0; stack< hints->targetStacks(); ++stack) {
@@ -54,5 +51,4 @@ void CGBall::buildDisplayList()
 		glVertex3d(0, mRadius, 0);
 		glEnd();
 	}
-	glEndList();
 }
