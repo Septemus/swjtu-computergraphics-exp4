@@ -114,6 +114,9 @@
     <ClInclude Include="CGCube.h">
       <Filter>头文件</Filter>
     </ClInclude>
+    <ClInclude Include="CBallDialog.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="MFCApplication1.cpp">
@@ -195,6 +198,9 @@
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="CGCube.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="CBallDialog.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>

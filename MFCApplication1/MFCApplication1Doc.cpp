@@ -39,6 +39,7 @@
 #include "CGModel2DTransformZoom.h"
 #include "CGCube.h"
 #include "TessellationHints.h"
+#include "CBallDialog.h"
 #include <propkey.h>
 
 #ifdef _DEBUG
@@ -62,6 +63,10 @@ BEGIN_MESSAGE_MAP(CMFCApplication1Doc, CDocument)
 	ON_UPDATE_COMMAND_UI(ID_ZOOM, &CMFCApplication1Doc::OnUpdateZoom)
 	ON_COMMAND(ID_MYROTATE, &CMFCApplication1Doc::OnRotation)
 	ON_UPDATE_COMMAND_UI(ID_MYROTATE, &CMFCApplication1Doc::OnUpdateRotation)
+	ON_COMMAND(ID_DRAW_BALL, &CMFCApplication1Doc::OnDrawBall)
+	ON_UPDATE_COMMAND_UI(ID_DRAW_BALL, &CMFCApplication1Doc::OnUpdateDrawBall)
+	ON_COMMAND(ID_CYLINDER, &CMFCApplication1Doc::OnCylinder)
+	ON_UPDATE_COMMAND_UI(ID_CYLINDER, &CMFCApplication1Doc::OnUpdateCylinder)
 END_MESSAGE_MAP()
 
 
@@ -544,4 +549,32 @@ void CMFCApplication1Doc::OnUpdateRotation(CCmdUI* pCmdUI)
 {
 	// TODO: 在此添加命令更新用户界面处理程序代码
 	pCmdUI->SetCheck(UIEventHandler::CurCommand() && UIEventHandler::CurCommand()->GetType() == EventType::Model2DTransformRotate);
+}
+
+
+void CMFCApplication1Doc::OnDrawBall()
+{
+	// TODO: 在此添加命令处理程序代码
+	CBallDialog ballDlg;
+	ballDlg.DoModal();
+}
+
+
+void CMFCApplication1Doc::OnUpdateDrawBall(CCmdUI* pCmdUI)
+{
+	// TODO: 在此添加命令更新用户界面处理程序代码
+	/*pCmdUI->SetCheck(dlg!=NULL);
+	return;*/
+}
+
+
+void CMFCApplication1Doc::OnCylinder()
+{
+	// TODO: 在此添加命令处理程序代码
+}
+
+
+void CMFCApplication1Doc::OnUpdateCylinder(CCmdUI* pCmdUI)
+{
+	// TODO: 在此添加命令更新用户界面处理程序代码
 }

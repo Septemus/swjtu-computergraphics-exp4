@@ -2,6 +2,7 @@
 // Microsoft Visual C++ 生成的包含文件。
 // 供 MFCApplication1.rc 使用
 //
+#define IDD_BALL_DIALOG                 5
 #define IDD_ABOUTBOX                    100
 #define IDP_OLE_INIT_FAILED             100
 #define IDB_WRITESMALL                  110
@@ -25,6 +26,13 @@
 #define IDR_RIBBON                      307
 #define BUTTON_1                        501
 #define BUTTON_2                        502
+#define IDC_RADIUS                      1013
+#define IDC_SLICE                       1014
+#define IDC_STACK                       1015
+#define IDC_STATIC1                     1016
+#define IDC_RADIUS_VALUE                1017
+#define IDC_SLICE_VALUE                 1018
+#define IDC_STACK_VALUE                 1019
 #define ID_WRITE_PASTEASHYPERLINK       32770
 #define ID_BUTTON3                      32772
 #define ID_SCANLINE_BUTTON              32772
@@ -37,14 +45,16 @@
 #define ID_DRAW2D_LINE_STRIP            32777
 #define ID_ZOOM                         32778
 #define ID_MYROTATE                     32779
+#define ID_DRAW_BALL                    33000
+#define ID_CYLINDER                     33001
 
 // Next default values for new objects
 // 
 #ifdef APSTUDIO_INVOKED
 #ifndef APSTUDIO_READONLY_SYMBOLS
-#define _APS_NEXT_RESOURCE_VALUE        314
+#define _APS_NEXT_RESOURCE_VALUE        316
 #define _APS_NEXT_COMMAND_VALUE         32780
-#define _APS_NEXT_CONTROL_VALUE         1008
+#define _APS_NEXT_CONTROL_VALUE         1020
 #define _APS_NEXT_SYMED_VALUE           310
 #endif
 #endif

@@ -94,4 +94,8 @@ public:
 	afx_msg void OnUpdateZoom(CCmdUI* pCmdUI);
 	afx_msg void OnRotation();
 	afx_msg void OnUpdateRotation(CCmdUI* pCmdUI);
+	afx_msg void OnDrawBall();
+	afx_msg void OnUpdateDrawBall(CCmdUI* pCmdUI);
+	afx_msg void OnCylinder();
+	afx_msg void OnUpdateCylinder(CCmdUI* pCmdUI);
 };
