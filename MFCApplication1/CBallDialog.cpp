@@ -19,7 +19,12 @@ void CBallDialog::OnBnClickedOk()
 	// TODO: 在此添加控件通知处理程序代码
 	CMainFrame* pMain = (CMainFrame*)AfxGetApp()->m_pMainWnd;
 	CMFCApplication1Doc* pDoc = (CMFCApplication1Doc*)pMain->GetActiveDocument();
-	pDoc->drawBall(radius, slice, stack);
+	CEdit* xedit = (CEdit*)GetDlgItem(IDC_X_AXIS);
+	CEdit* yedit = (CEdit*)GetDlgItem(IDC_Y_AXIS);
+	CString tmpx,tmpy;
+	xedit->GetWindowTextW(tmpx);
+	yedit->GetWindowTextW(tmpy);
+	pDoc->drawBall(radius, slice, stack,_ttoi(tmpx),_ttoi(tmpy));
 	CDialog::OnOK();
 }
 void CBallDialog::OnHScroll(UINT nSHCode, UINT nPos, CScrollBar* pScrollBar)

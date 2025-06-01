@@ -579,7 +579,7 @@ void CMFCApplication1Doc::OnUpdateCylinder(CCmdUI* pCmdUI)
 {
 	// TODO: 在此添加命令更新用户界面处理程序代码
 }
-void CMFCApplication1Doc::drawBall(int radius, int slice, int stack) {
+void CMFCApplication1Doc::drawBall(int radius, int slice, int stack,int xval=300,int yval=200) {
 	//球体（模型）
 	auto c = std::make_shared<CGBall>();
 	auto h = std::make_shared<TessellationHints>();
@@ -593,7 +593,7 @@ void CMFCApplication1Doc::drawBall(int radius, int slice, int stack) {
 	auto color1 = std::make_shared<CGColor>(); //属性
 	color1->setValue(glm::vec4(0.0f, 1.0f, 0.0f, 1.0f)); //绿色
 	e1->gocRenderStateSet()->setRenderState(color1, -1); //设置节点属性
-	t1->translate(300, 200, 0);
+	t1->translate(xval, yval, 0);
 	t1->rotate(45, 1, 1, 1);
 	t1->scale(radius, radius, radius);
 	e1->AddChild(c);

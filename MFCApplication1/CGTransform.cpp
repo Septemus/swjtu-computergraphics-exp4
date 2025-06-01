@@ -23,6 +23,28 @@ bool CGTransform::Render(CGRenderContext* pRC, CGCamera* pCamera)
 {
 	if (pRC == nullptr || pCamera == nullptr)
 		return false;
+	//glMatrixMode(GL_MODELVIEW);
+	//glLoadIdentity();
+	glEnable(GL_COLOR_MATERIAL); //启用颜色作为材质
+	glColorMaterial(GL_FRONT, GL_AMBIENT_AND_DIFFUSE);
+
+	glEnable(GL_LIGHTING);
+	glEnable(GL_LIGHT0);
+	glEnable(GL_NORMALIZE); // good for scaled models
+	glDisable(GL_CULL_FACE); // Optional
+
+
+	GLfloat lightPos[] = { 0.0f, 0.0f, 200.0f, 1.0f };
+
+	glLightfv(GL_LIGHT0, GL_POSITION, lightPos);
+	GLfloat ambient[] = { 0.3f, 0.3f, 0.3f, 1.0f };
+	GLfloat diffuse[] = { 1.0f, 1.0f, 1.0f, 1.0f };
+	GLfloat specular[] = { 1.0f, 1.0f, 1.0f, 1.0f };
+
+	glLightfv(GL_LIGHT0, GL_AMBIENT, ambient);
+	glLightfv(GL_LIGHT0, GL_DIFFUSE, diffuse);
+	glLightfv(GL_LIGHT0, GL_SPECULAR, specular);
+
 	glPushMatrix(); //保存
 	glMultMatrixf(glm::value_ptr(localMatrix())); //相对上一级变换
 	if (getRenderStateSet()) {
